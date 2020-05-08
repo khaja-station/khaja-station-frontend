@@ -1,5 +1,5 @@
-// useDarkMode.js
 import { useEffect, useState } from "react";
+
 import { Theme } from "../enum/theme";
 
 export const useDarkTheme = (): [Theme, () => void] => {

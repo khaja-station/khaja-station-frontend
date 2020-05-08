@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
 import { appTypes } from "./app.types";
+import { Theme } from "../enum/theme";
 
 interface AppProviderProps {
   children: React.ReactNode;
@@ -7,10 +8,10 @@ interface AppProviderProps {
 type Dispatch = (action: any) => void;
 
 interface AppProps {
-  theme: string;
+  theme: Theme;
 }
 const initialState: AppProps = {
-  theme: "dark",
+  theme: Theme.DARK,
 };
 const AppStateContext = createContext<AppProps | undefined>(undefined);
 const AppDispatchContext = createContext<Dispatch | undefined>(undefined);
@@ -18,10 +19,10 @@ const AppDispatchContext = createContext<Dispatch | undefined>(undefined);
 function appReducer(state: AppProps, action: any) {
   switch (action.type) {
     case appTypes.SET_DARK_THEME: {
-      return { ...state, theme: "dark" };
+      return { ...state, theme: Theme.DARK };
     }
     case appTypes.SET_LIGHT_THEME: {
-      return { ...state, theme: "light" };
+      return { ...state, theme: Theme.LIGHT };
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
