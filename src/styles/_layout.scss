@@ -1,5 +1,6 @@
-body {
+.test {
   @include themed() {
     background: t($bg);
+    color: t($primary);
   }
 }
