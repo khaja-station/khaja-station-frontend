@@ -1,4 +1,5 @@
 import React, { createContext } from "react";
+import { appTypes } from "./app.types";
 
 interface AppProviderProps {
   children: React.ReactNode;
@@ -16,10 +17,10 @@ const AppDispatchContext = createContext<Dispatch | undefined>(undefined);
 
 function appReducer(state: AppProps, action: any) {
   switch (action.type) {
-    case "SET_DARK_THEME": {
+    case appTypes.SET_DARK_THEME: {
       return { ...state, theme: "dark" };
     }
-    case "SET_LIGHT_THEME": {
+    case appTypes.SET_LIGHT_THEME: {
       return { ...state, theme: "light" };
     }
     default: {

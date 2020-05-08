@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppState } from "./context/app-context";
+import { useAppState } from "./app.context";
 
 export default function Main() {
   const { theme } = useAppState();
