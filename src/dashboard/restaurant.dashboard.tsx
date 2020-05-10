@@ -1,10 +1,10 @@
-import React from "react";
-import MenuDashboardLayout from "../layouts/menu-dashboard.layout";
+import React from 'react';
+import MenuDashboardLayout from '../layouts/menu-dashboard.layout';
 
 function RestaurantDashboard() {
   return (
     <MenuDashboardLayout>
-      <div style={{ height: 500, width: 500, background: "red" }}>...</div>
+      <div style={{ height: 500, width: 500, background: 'red' }}>...</div>
     </MenuDashboardLayout>
   );
 }
