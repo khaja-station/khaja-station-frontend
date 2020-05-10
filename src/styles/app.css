@@ -202,12 +202,12 @@ template {
 
 .theme--light .top-navbar {
   background: #eee;
-  color: #000000;
+  color: #000;
 }
 
 .theme--dark .top-navbar {
   background: #363537;
-  color: #ffffff;
+  color: #fff;
 }
 
 .toggle-container {
