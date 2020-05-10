@@ -1,15 +1,17 @@
 import React from "react";
-import { ReactComponent as SunIcon } from "../assets/icons/sun.svg";
-import { ReactComponent as MoonIcon } from "../assets/icons/moon.svg";
+import Toggle from "./partials/toggle";
 
 interface Props {
   toggleTheme: () => void;
 }
+
 const TopNavbar: React.FC<Props> = ({ toggleTheme }) => {
   return (
-    <div onClick={toggleTheme} className="toggle-container">
-      <SunIcon />
-      <MoonIcon />
+    <div className="top-navbar">
+      <div>Khaja Station</div>
+      <div className="toggle-wrapper">
+        <Toggle toggleTheme={toggleTheme} />
+      </div>
     </div>
   );
 };

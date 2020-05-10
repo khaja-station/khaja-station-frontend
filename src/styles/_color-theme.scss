@@ -1,24 +1,20 @@
 $bg: "bg";
 $primary: "primary";
 $secondary: "secondary";
-
-$toggleTransformFirst: "toggle-transform-first";
-$toggleTransformSecond: "toggle-transform-second";
+$text: "text";
 
 $themes: (
   light: (
     bg: $bg--light,
+    text: $text--light,
     primary: $primary--light,
     secondary: $secondary--light,
-    toggleTransformFirst: $toggle-transform-first--light,
-    toggleTransformSecond: $toggle-transform-second--light,
   ),
   dark: (
     bg: $bg--dark,
+    text: $text--dark,
     primary: $primary--dark,
     secondary: $secondary--dark,
-    toggleTransformFirst: $toggle-transform-first--dark,
-    toggleTransformSecond: $toggle-transform-second--dark,
   ),
 );
 

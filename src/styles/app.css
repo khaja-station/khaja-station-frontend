@@ -181,8 +181,8 @@ template {
 }
 
 .theme--light .test {
-  background: #e2e2e2;
-  color: #5863f8;
+  background: #eee;
+  color: #3370ff;
 }
 
 .theme--dark .test {
@@ -190,31 +190,52 @@ template {
   color: #3370ff;
 }
 
-.toggle-container {
-  border-radius: 30px;
-  cursor: pointer;
+.top-navbar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-size: 0.5rem;
+  padding: 0.5rem;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.theme--light .top-navbar {
+  background: #eee;
+  color: #000000;
+}
+
+.theme--dark .top-navbar {
+  background: #363537;
+  color: #ffffff;
+}
+
+.toggle-container {
+  background: #00d4ff;
+  background: -webkit-gradient(linear, left top, right top, from(#00d4ff), color-stop(96%, #090979), to(#000224));
+  background: linear-gradient(90deg, #00d4ff 0%, #090979 96%, #000224 100%);
+  width: 5rem;
+  height: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   margin: 0 auto;
-  overflow: hidden;
+  cursor: pointer;
   padding: 0.5rem;
+  overflow: hidden;
+  font-size: 0.5rem;
   position: relative;
-  width: 8rem;
-  height: 4rem;
+  border-radius: 30px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .theme--light .toggle-container {
-  background: #e2e2e2;
-  border: 2px solid #5863f8;
+  border: 2px solid #3370ff;
 }
 
 .theme--dark .toggle-container {
-  background: #363537;
   border: 2px solid #3370ff;
 }
 
@@ -223,5 +244,25 @@ template {
   width: 2.5rem;
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
+}
+
+.toggle-container svg:first-child {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.toggle-container svg:nth-child(2) {
+  -webkit-transform: translateY(-100px);
+          transform: translateY(-100px);
+}
+
+.theme--dark .toggle-container svg:first-child {
+  -webkit-transform: translateY(100px);
+          transform: translateY(100px);
+}
+
+.theme--dark .toggle-container svg:nth-child(2) {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 /*# sourceMappingURL=app.css.map */

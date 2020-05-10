@@ -1,4 +1,7 @@
-$toggle-transform-first--light: translateY(0);
-$toggle-transform-first--dark: translateY(100px);
-$toggle-transform-second--light: translateY(-100px);
-$toggle-transform-second--dark: translateY(0);
+$toggle-background: rgb(0, 212, 255);
+$toggle-background-gradient: linear-gradient(
+  90deg,
+  rgba(0, 212, 255, 1) 0%,
+  rgba(9, 9, 121, 1) 96%,
+  rgba(0, 2, 36, 1) 100%
+);
