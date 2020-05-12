@@ -1,6 +1,7 @@
 exclude_paths:
-    - 'tslint.json',
-    - 'tsconfig.json',
-    - 'package.json',
-    - 'package.lock',
-    - 'yarn.lock'
+  - '**.min.js'
+  - '**/tests/**'
+  - '**.scss',
+  - 'tsconfig.json',
+  - 'tslint.json',
+  - 'package.json'
