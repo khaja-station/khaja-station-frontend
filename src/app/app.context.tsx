@@ -1,6 +1,7 @@
-import React, { createContext } from "react";
-import { appTypes } from "./app.types";
-import { Theme } from "../enum/theme";
+import React, { createContext } from 'react';
+
+import { Theme } from './app.enum';
+import { appTypes } from './app.types';
 
 interface AppProviderProps {
   children: React.ReactNode;
@@ -34,9 +35,7 @@ function AppProvider({ children }: AppProviderProps) {
   const [state, dispatch] = React.useReducer(appReducer, initialState);
   return (
     <AppStateContext.Provider value={state}>
-      <AppDispatchContext.Provider value={dispatch as any}>
-        {children}
-      </AppDispatchContext.Provider>
+      <AppDispatchContext.Provider value={dispatch as any}>{children}</AppDispatchContext.Provider>
     </AppStateContext.Provider>
   );
 }
@@ -44,7 +43,7 @@ function AppProvider({ children }: AppProviderProps) {
 function useAppState() {
   const context = React.useContext(AppStateContext);
   if (context === undefined) {
-    throw new Error("useAppState must be used within a App Provider");
+    throw new Error('useAppState must be used within a App Provider');
   }
   return context;
 }
@@ -52,7 +51,7 @@ function useAppState() {
 function useDispatch() {
   const context = React.useContext(AppDispatchContext);
   if (context === undefined) {
-    throw new Error("appDispatch must be used within a App Provider");
+    throw new Error('appDispatch must be used within a App Provider');
   }
   return context;
 }

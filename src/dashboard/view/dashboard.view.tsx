@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuDashboardLayout from '../layouts/menu-dashboard.layout';
+import MenuDashboardLayout from 'layouts/menu-dashboard.layout';
 
 function RestaurantDashboard() {
   return (

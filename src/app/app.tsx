@@ -1,8 +1,7 @@
-import React from "react";
-import Main from "./main";
-import { AppProvider } from "./app.context";
-
-import "../styles/app.css";
+import React from 'react';
+import Main from './main';
+import 'assets/css/app.css';
+import { AppProvider } from './app.context';
 
 function App() {
   return (
