@@ -1,0 +1,6 @@
+exclude_paths:
+    - 'tslint.json',
+    - 'tsconfig.json',
+    - 'package.json',
+    - 'package.lock',
+    - 'yarn.lock'
