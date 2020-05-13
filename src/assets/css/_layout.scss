@@ -1,6 +1,7 @@
-.test {
-  @include themed() {
-    background: t($bg);
-    color: t($primary);
-  }
+.menu-dashboard-layout-wrapper {
+  width: 100%;
+}
+.sidebar-wrapper {
+  padding-right: 1rem;
+  outline: 1px solid red;
 }
