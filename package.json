@@ -11,6 +11,8 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-icons": "^3.0.0",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
@@ -21,10 +23,20 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,js,tsx}'",
+    "lint:fix": "tslint --fix -c tslint.json 'src/**/*.{ts,js,tsx}'",
+    "prettify": "prettier --single-quote --write \"src/**/*.{ts,js,json,tsx}\""
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "lint-staged": {
+    "*.{ts,js, tsx}": [
+      "prettier --single-quote --write",
+      "tslint --fix -c tslint.json 'src/**/*.{ts,js}'",
+      "git add"
+    ]
   },
   "browserslist": {
     "production": [
@@ -37,5 +49,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
+    "prettier": "^2.0.5",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^5.0.0",
+    "tslint-react-a11y": "^1.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

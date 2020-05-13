@@ -1,15 +1,18 @@
 $bg: "bg";
 $primary: "primary";
 $secondary: "secondary";
+$text: "text";
 
 $themes: (
   light: (
     bg: $bg--light,
+    text: $text--light,
     primary: $primary--light,
     secondary: $secondary--light,
   ),
   dark: (
     bg: $bg--dark,
+    text: $text--dark,
     primary: $primary--dark,
     secondary: $secondary--dark,
   ),

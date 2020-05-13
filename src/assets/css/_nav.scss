@@ -1,0 +1,59 @@
+.top-navbar {
+  width: 100%;
+  display: flex;
+  padding: 0.5rem;
+  justify-content: space-between;
+
+  @include themed() {
+    background: t($bg);
+    color: t($text);
+  }
+}
+
+.toggle-container {
+  @include themed() {
+    border: 2px solid t($primary);
+  }
+
+  background: $toggle-background;
+  background: $toggle-background-gradient;
+  width: 5rem;
+  height: 2rem;
+  display: flex;
+  margin: 0 auto;
+  cursor: pointer;
+  padding: 0.5rem;
+  overflow: hidden;
+  font-size: 0.5rem;
+  position: relative;
+  border-radius: 30px;
+  justify-content: space-between;
+
+  svg {
+    height: auto;
+    width: 2.5rem;
+    transition: all 0.3s linear;
+
+    &:first-child {
+      transform: translateY(0);
+    }
+
+    &:nth-child(2) {
+      transform: translateY(-100px);
+    }
+  }
+}
+
+.theme--dark {
+  .toggle-container {
+    svg {
+      &:first-child {
+        transform: translateY(100px);
+      }
+
+      &:nth-child(2) {
+        transform: translateY(0);
+      }
+    }
+  }
+}
