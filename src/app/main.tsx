@@ -10,7 +10,7 @@ export default function Main() {
   const [theme, toggleTheme] = useDarkTheme();
   const themeClass = `theme ${theme === Theme.DARK ? 'theme--dark' : 'theme--light'}`;
   return (
-    <Suspense fallback='...'>
+    <Suspense fallback='....'>
       <div className={themeClass}>
         <TopNavbar toggleTheme={toggleTheme} />
         <RestaurantDashboard />
