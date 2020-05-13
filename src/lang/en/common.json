@@ -1,3 +1,9 @@
 {
-  "SIDEBAR_TEXT": "This is Sidebar"
+  "SIDEBAR_TEXT": "This is Sidebar",
+  "DASHBOARD": "Dashboard",
+  "FOOD_CATEGORY": "Food Category",
+  "FOOD_LIST": "Food List",
+  "FOOD_GRID": "Food Grid",
+  "FOOD_ITEM": "Food item",
+  "ADD_FOOD": "Add food"
 }
