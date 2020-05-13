@@ -1,12 +1,13 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import Sidebar from 'sidebar/views/sidebar';
 interface Props {}
+
+const sidebar = <Sidebar />;
 const MenuDashboardLayout: React.FC<Props> = ({ children }) => {
-  const { t } = useTranslation();
   return (
     <div className='container-fluid menu-dashboard-layout-wrapper'>
       <div className='row'>
-        <div className='col-md-2 sidebar-wrapper'>{t('common.SIDEBAR_TEXT')}</div>
+        <div className='col-md-2 sidebar-wrapper'>{sidebar}</div>
         <div className='col-md-10  dashboard-wrapper'>
           <div className='dashboard-nav-wrapper'>dashboard nav</div>
           <div className='dashboard-content-wrapper'>{children}</div>
