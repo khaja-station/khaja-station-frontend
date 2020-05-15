@@ -7,6 +7,13 @@
   }
 }
 
+.theme--dark {
+  .separator {
+    border: 1px solid #666;
+    border-collapse: collapse;
+  }
+}
+
 .menu-dashboard-layout-wrapper {
   width: 100%;
 }
