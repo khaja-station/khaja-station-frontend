@@ -1,9 +1,7 @@
 import { DashboardView } from 'dashboard/views';
-import { AiFillLayout } from 'react-icons/ai';
 
 export const sidebarData = {
   dashboard: {
-    icon: AiFillLayout,
     title: 'DASHBOARD',
     route: '/dashboard',
     component: DashboardView,
