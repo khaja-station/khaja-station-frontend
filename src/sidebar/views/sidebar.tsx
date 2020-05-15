@@ -1,17 +1,27 @@
+import MenuItem from './menu-item';
 import React, { useState } from 'react';
-import SidebarItem from './sidebar-item';
+import SidebarItem from './menu-sub-item';
+import { AiFillLayout } from 'react-icons/ai';
 import { sidebarData } from 'sidebar/sidebar.data';
-import { CSSTransition } from 'react-transition-group';
-import { FaChevronUp, FaChevronDown, FaHome } from 'react-icons/fa';
-import { SidebarPropertyType, MenuKey } from 'sidebar/sidebar.types';
+import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { SidebarPropertyType, MenuKey, MenuItemType } from 'sidebar/sidebar.types';
 
-const { dashboard, food } = sidebarData;
+const { food, dashboard } = sidebarData;
 
-const dashboardComponent = <SidebarItem item={dashboard} />;
-
-const foodItemComponents = food.map((item: SidebarPropertyType, index: number) => (
-  <SidebarItem item={item} key={index} />
-));
+const menuItems = {
+  dashboard: {
+    icon: <AiFillLayout />,
+    name: 'DASHBOARD',
+    key: MenuKey.DASHBOARD,
+    child: <SidebarItem item={dashboard} />,
+  },
+  food: {
+    icon: <AiFillLayout />,
+    name: 'FOOD',
+    key: MenuKey.FOOD,
+    child: food.map((item: SidebarPropertyType, index: number) => <SidebarItem item={item} key={index} />),
+  },
+};
 
 function Sidebar() {
   const [expanded, setExpanded] = useState<MenuKey | null>(MenuKey.DASHBOARD);
@@ -23,36 +33,22 @@ function Sidebar() {
     isExpanded(key) ? setExpanded(null) : setExpanded(key);
   };
 
-  const isDashboardExpanded = isExpanded(MenuKey.DASHBOARD);
+  const children = Object.values(menuItems).map((item: MenuItemType, index: number) => (
+    <MenuItem
+      key={index}
+      props={{
+        isExpanded,
+        chevronIcon,
+        key: item.key,
+        toggleExpansion,
+        name: item.name,
+        icon: item.icon,
+        child: item.child,
+      }}
+    />
+  ));
 
-  return (
-    <div>
-      <div className='sidebar-item'>
-        <div
-          className='d-flex justify-content-between'
-          role='button'
-          onClick={() => toggleExpansion(MenuKey.DASHBOARD)}
-        >
-          <div className='d-flex align-items-end'>
-            <span className='left-icon'>
-              <FaHome size={28} />
-            </span>
-            <h4>Dashboard</h4>
-          </div>
-          {chevronIcon(MenuKey.DASHBOARD)}
-        </div>
-        {isDashboardExpanded ? (
-          <CSSTransition in={isDashboardExpanded} timeout={1000} classNames='alert'>
-            {dashboardComponent}
-          </CSSTransition>
-        ) : null}
-      </div>
-      <div className='sidebar-item'>
-        <h4>Food Menu</h4>
-        {foodItemComponents}
-      </div>
-    </div>
-  );
+  return <div className='sidebar-item'>{children}</div>;
 }
 
 export default Sidebar;

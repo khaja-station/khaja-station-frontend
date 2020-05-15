@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { SidebarItemType } from 'sidebar/sidebar.types';
 
 const i = (Icon: any) => (Icon ? <Icon /> : null);
-function SidebarItem({ item }: SidebarItemType) {
+function MenuSubItem({ item }: SidebarItemType) {
   const { t } = useTranslation();
   const ct = (text: string) => t(`common.${text}`);
   return (
@@ -17,4 +17,4 @@ function SidebarItem({ item }: SidebarItemType) {
   );
 }
 
-export default SidebarItem;
+export default MenuSubItem;
