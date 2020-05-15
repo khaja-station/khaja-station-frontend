@@ -27,6 +27,7 @@ function Sidebar() {
   const [expanded, setExpanded] = useState<MenuKey | null>(MenuKey.DASHBOARD);
 
   const isExpanded = (key: MenuKey): boolean => expanded === key;
+
   const chevronIcon = (key: MenuKey) => (isExpanded(key) ? <FaChevronUp size={24} /> : <FaChevronDown size={24} />);
 
   const toggleExpansion = (key: MenuKey) => {
