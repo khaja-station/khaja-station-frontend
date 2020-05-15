@@ -10027,6 +10027,11 @@ a:hover {
   color: #fff;
 }
 
+.theme--dark .separator {
+  border: 1px solid #666;
+  border-collapse: collapse;
+}
+
 .menu-dashboard-layout-wrapper {
   width: 100%;
 }
@@ -10050,11 +10055,15 @@ a:hover {
 .theme--light .top-navbar {
   background: #eee;
   color: #000;
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.6);
+          box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.6);
 }
 
 .theme--dark .top-navbar {
   background: #363537;
   color: #fff;
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.6);
+          box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.6);
 }
 
 .toggle-container {
