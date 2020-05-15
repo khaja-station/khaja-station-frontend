@@ -1,7 +1,16 @@
+.app-wrapper {
+  @include themed() {
+    width: 100%;
+    height: 100vh;
+    background: t($bg);
+    color: t($text);
+  }
+}
+
 .menu-dashboard-layout-wrapper {
   width: 100%;
 }
 .sidebar-wrapper {
-  padding-right: 1rem;
+  padding: 1rem;
   outline: 1px solid red;
 }

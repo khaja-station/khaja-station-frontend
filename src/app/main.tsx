@@ -2,10 +2,10 @@ import React, { Suspense } from 'react';
 import { Theme } from './app.enum';
 import TopNavbar from '../layouts/navbar/top.navbar';
 import { useDarkTheme } from '../common/hooks/useDarkTheme';
-import RestaurantDashboard from '../dashboard/views/dashboard.view';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import './app.i18n';
+import AppRoute from './app.route';
 
 export default function Main() {
   const [theme, toggleTheme] = useDarkTheme();
@@ -14,8 +14,10 @@ export default function Main() {
     <Router>
       <Suspense fallback='....'>
         <div className={themeClass}>
-          <TopNavbar toggleTheme={toggleTheme} />
-          <RestaurantDashboard />
+          <div className='app-wrapper'>
+            <TopNavbar toggleTheme={toggleTheme} />
+            <AppRoute />
+          </div>
         </div>
       </Suspense>
     </Router>
