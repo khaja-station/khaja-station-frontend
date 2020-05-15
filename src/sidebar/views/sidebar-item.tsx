@@ -1,16 +1,18 @@
 import React from 'react';
-import { SidebarItemType } from 'sidebar/sidebar.types';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { SidebarItemType } from 'sidebar/sidebar.types';
+
+const i = (Icon: any) => (Icon ? <Icon /> : null);
 function SidebarItem({ item }: SidebarItemType) {
-  const history = useHistory();
   const { t } = useTranslation();
   const ct = (text: string) => t(`common.${text}`);
   return (
-    <div className='sidebar-item-wrapper'>
-      <h4 className='sidebar-item-title' onClick={() => history.push(item.route)}>
-        {ct(item.title)}
-      </h4>
+    <div className='sidebar-item-wrapper transition'>
+      <Link className='link d-flex align-items-end' to={item.route}>
+        <span className='left-icon'>{i(item?.icon)}</span>
+        <span>{ct(item.title)}</span>
+      </Link>
     </div>
   );
 }
