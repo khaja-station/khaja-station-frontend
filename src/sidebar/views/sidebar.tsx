@@ -10,15 +10,15 @@ const { food, dashboard } = sidebarData;
 
 const menuItems = {
   dashboard: {
-    icon: <AiFillLayout />,
     name: 'DASHBOARD',
+    icon: <AiFillLayout />,
     key: MenuKey.DASHBOARD,
     child: <SidebarItem item={dashboard} />,
   },
   food: {
-    icon: <AiFillLayout />,
     name: 'FOOD',
     key: MenuKey.FOOD,
+    icon: <AiFillLayout />,
     child: food.map((item: SidebarPropertyType, index: number) => <SidebarItem item={item} key={index} />),
   },
 };
