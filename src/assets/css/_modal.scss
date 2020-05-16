@@ -1,0 +1,6 @@
+.modal-backdrop {
+  color: black;
+  @include themed() {
+    background-color: t($bg);
+  }
+}

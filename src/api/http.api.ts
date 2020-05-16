@@ -51,7 +51,7 @@ axiosInstance.interceptors.response.use(
       return handle401Error(error);
     }
 
-    return withError(error.response ? error.response.data : error);
+    return withError(error.response.data ? error.response.data : error);
   }
 );
 
@@ -94,14 +94,16 @@ export function get(url: string, params: object = {}): any {
   });
 }
 
-export function post(url: string, data: any): any {
+export function post(url: string, data: any, auth: boolean = false): any {
   return axiosInstance({
     method: 'post',
     url,
     data,
-    headers: {
-      authorization: `Bearer ${Token.getAccessToken()}`,
-    },
+    headers: auth
+      ? {
+          authorization: `Bearer ${Token.getAccessToken()}`,
+        }
+      : undefined,
   });
 }
 
