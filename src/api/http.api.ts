@@ -1,9 +1,9 @@
 import axios from 'axios';
 import env from 'app/app.env';
-import { Token } from 'api/token.api';
 import { STATUS_CODE } from 'app/app.status';
 import { refreshAccessToken } from 'api/request.api';
 import { withError, withData } from 'common/common-helper';
+import { getAccessToken, changeAccessToken } from 'app/app.storage';
 
 const axiosInstance = axios.create({
   baseURL: env.BASE_URL,
@@ -38,14 +38,13 @@ axiosInstance.interceptors.response.use(
   },
   (error: any): any => {
     if (error.message === STATUS_CODE.NETWORK_ERROR) {
-      // Toast with error message
       return withError(error.message);
     }
 
     const {
       response: { status },
     } = error;
-    const isSignedIn = Token.getAccessToken();
+    const isSignedIn = getAccessToken();
 
     if (status === STATUS_CODE.UNAUTHORIZED && isSignedIn) {
       return handle401Error(error);
@@ -65,7 +64,7 @@ const handle401Error = (error: any) => {
         const { data } = res;
         isRefreshing = false;
         onRefreshed(data.token);
-        Token.refreshAccessToken(data.token);
+        changeAccessToken(data.token);
 
         return (refreshSubscribers = []);
       }
@@ -89,19 +88,19 @@ export function get(url: string, params: object = {}): any {
     url,
     params,
     headers: {
-      authorization: `Bearer ${Token.getAccessToken()}`,
+      authorization: `Bearer ${getAccessToken()}`,
     },
   });
 }
 
-export function post(url: string, data: any, auth: boolean = false): any {
+export function post(url: string, data: any, auth: boolean = true): any {
   return axiosInstance({
     method: 'post',
     url,
     data,
     headers: auth
       ? {
-          authorization: `Bearer ${Token.getAccessToken()}`,
+          authorization: `Bearer ${getAccessToken()}`,
         }
       : undefined,
   });
@@ -113,7 +112,7 @@ export function put(url: string, data: any): any {
     url,
     data,
     headers: {
-      authorization: `Bearer ${Token.getAccessToken()} `,
+      authorization: `Bearer ${getAccessToken()} `,
     },
   });
 }
@@ -124,7 +123,7 @@ export function remove(url: string, params: object = {}): any {
     url,
     params,
     headers: {
-      authorization: `Bearer ${Token.getAccessToken()} `,
+      authorization: `Bearer ${getAccessToken()} `,
     },
   });
 }
