@@ -3,10 +3,10 @@
   display: flex;
   padding: 0.5rem;
   justify-content: space-between;
-
   @include themed() {
     background: t($bg);
     color: t($text);
+    box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.6);
   }
 }
 

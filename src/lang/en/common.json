@@ -1,0 +1,10 @@
+{
+  "FOOD": "Food",
+  "DASHBOARD": "Dashboard",
+
+  "ADD_FOOD": "Add food",
+  "FOOD_LIST": "Food List",
+  "FOOD_GRID": "Food Grid",
+  "FOOD_ITEM": "Food item",
+  "FOOD_CATEGORY": "Food Category"
+}

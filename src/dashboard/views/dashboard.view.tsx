@@ -1,7 +1,7 @@
 import React from 'react';
 import MenuDashboardLayout from 'layouts/menu-dashboard.layout';
 
-function RestaurantDashboard() {
+function Dashboard() {
   return (
     <MenuDashboardLayout>
       <div style={{ height: 500, width: 500, background: 'red' }}>...</div>
@@ -9,4 +9,4 @@ function RestaurantDashboard() {
   );
 }
 
-export default RestaurantDashboard;
+export default Dashboard;
