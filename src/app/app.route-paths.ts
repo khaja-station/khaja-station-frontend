@@ -1,6 +1,6 @@
 import { DashboardView } from 'dashboard/views';
 
-export const sidebarData = {
+export const appRoutes = {
   dashboard: {
     title: 'DASHBOARD',
     route: '/dashboard',

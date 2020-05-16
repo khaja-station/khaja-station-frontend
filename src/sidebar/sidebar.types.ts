@@ -1,7 +1,7 @@
 export interface SidebarPropertyType {
-  icon?: React.ReactNode;
   title: string;
   route: string;
+  icon?: React.ReactNode;
   component: React.ReactNode;
 }
 
@@ -17,20 +17,20 @@ export enum MenuKey {
   PROMOTION,
 }
 export interface MenuItemType {
-  icon: React.ReactNode;
   name: string;
   key: MenuKey;
+  icon: React.ReactNode;
   child: React.ReactNode;
 }
 
 export interface DashboardMenuItemProps {
   props: {
-    icon: React.ReactNode;
     name: string;
     key: MenuKey;
-    toggleExpansion: (key: MenuKey) => void;
+    icon: React.ReactNode;
+    child: React.ReactNode;
     chevronIcon: (key: MenuKey) => void;
     isExpanded: (key: MenuKey) => boolean;
-    child: React.ReactNode;
+    toggleExpansion: (key: MenuKey) => void;
   };
 }

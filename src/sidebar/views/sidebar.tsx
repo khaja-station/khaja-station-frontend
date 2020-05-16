@@ -1,27 +1,8 @@
 import MenuItem from './menu-item';
 import React, { useState } from 'react';
-import SidebarItem from './menu-sub-item';
-import { AiFillLayout } from 'react-icons/ai';
-import { sidebarData } from 'sidebar/sidebar.data';
+import { menuItems } from '../sidebar.menu-item';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
-import { SidebarPropertyType, MenuKey, MenuItemType } from 'sidebar/sidebar.types';
-
-const { food, dashboard } = sidebarData;
-
-const menuItems = {
-  dashboard: {
-    name: 'DASHBOARD',
-    icon: <AiFillLayout />,
-    key: MenuKey.DASHBOARD,
-    child: <SidebarItem item={dashboard} />,
-  },
-  food: {
-    name: 'FOOD',
-    key: MenuKey.FOOD,
-    icon: <AiFillLayout />,
-    child: food.map((item: SidebarPropertyType, index: number) => <SidebarItem item={item} key={index} />),
-  },
-};
+import { MenuKey, MenuItemType } from 'sidebar/sidebar.types';
 
 function Sidebar() {
   const [expanded, setExpanded] = useState<MenuKey | null>(MenuKey.DASHBOARD);

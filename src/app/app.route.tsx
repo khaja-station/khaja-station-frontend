@@ -1,6 +1,6 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
 import { DashboardView } from 'dashboard/views';
+import { Switch, Route } from 'react-router-dom';
 
 function AppRoute() {
   return (
