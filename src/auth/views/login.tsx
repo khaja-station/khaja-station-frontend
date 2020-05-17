@@ -1,17 +1,26 @@
 import React from 'react';
 import { Formik } from 'formik';
+import Input from 'common/components/input';
 import { adminLogin } from 'api/request.api';
+import SubmitButton from 'common/components';
 import { AuthLayout } from 'layouts/auth-layout';
 import { useModal, Modal } from 'common/components/modal';
+import { loginValidationSchema } from 'auth/auth.validation';
+import { LoginInitialValues } from 'auth/auth.types';
 
 export const Login = () => {
   const loginModal = useModal(true);
+  const initialValues: LoginInitialValues = {
+    email: '',
+    password: '',
+  };
   return (
     <AuthLayout>
-      <Modal title={'Admin Login'} {...loginModal.props}>
+      <Modal title={'Restaurant Login'} {...loginModal.props}>
         <Formik
-          initialValues={{ email: '', password: '' }}
           validateOnBlur
+          initialValues={initialValues}
+          validationSchema={loginValidationSchema}
           onSubmit={async (values, actions) => {
             const { error } = await adminLogin(values);
             if (error?.status) {
@@ -20,46 +29,49 @@ export const Login = () => {
             actions.setSubmitting(false);
           }}
         >
-          {(props) => (
-            <form onSubmit={props.handleSubmit}>
-              <div className='form-group pt-4'>
-                <label htmlFor='adminEmail'>Email address</label>
-                <input
-                  type='email'
+          {(props) => {
+            const error = (field: keyof LoginInitialValues) =>
+              props.touched[field] && props.values[field] && props.errors[field] ? props.errors[field] : undefined;
+
+            const fieldInfo = (field: keyof LoginInitialValues) => {
+              return {
+                email: `We'll never share your email with anyone else.`,
+                password: `At least one Uppercase,lowercase, a special character and of length of 8 letter`,
+              }[field];
+            };
+
+            const helpText = (field: keyof LoginInitialValues) => {
+              return error(field) ? error(field) : fieldInfo(field);
+            };
+
+            const isValid = () => props.isValid && Object.values(props.values).some(Boolean);
+
+            return (
+              <form onSubmit={props.handleSubmit}>
+                <Input
+                  title='Email Address'
                   name='email'
-                  id='adminEmail'
-                  className='form-control'
+                  type='email'
                   placeholder='Enter email'
-                  aria-describedby='emailHelp'
-                  onChange={props.handleChange}
+                  error={!!error('email')}
+                  helperText={helpText('email')}
+                  handleChange={props.handleChange}
+                  handleOnBlur={props.handleBlur}
                 />
-                <small id='emailHelp' className='form-text text-muted'>
-                  We'll never share your email with anyone else.
-                </small>
-              </div>
-              <div className='form-group pt-4'>
-                <label htmlFor='adminPassword'>Password</label>
-                <input
+                <Input
                   name='password'
                   type='password'
-                  id='adminPassword'
-                  placeholder='Password'
-                  className='form-control'
-                  onChange={props.handleChange}
+                  title='Password'
+                  helperText={helpText('password')}
+                  placeholder='Enter password'
+                  error={!!error('password')}
+                  handleOnBlur={props.handleBlur}
+                  handleChange={props.handleChange}
                 />
-              </div>
-              {props.errors.password && (
-                <div className='form-error-text text-danger text-center'> {props.errors.password}!!</div>
-              )}
-              <button
-                type='submit'
-                className='btn btn-primary btn-block mt-4 py-2 center'
-                disabled={props.isSubmitting}
-              >
-                Submit
-              </button>
-            </form>
-          )}
+                <SubmitButton loading={props.isSubmitting} text='Login' disabled={!isValid()} />
+              </form>
+            );
+          }}
         </Formik>
       </Modal>
     </AuthLayout>
