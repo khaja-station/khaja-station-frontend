@@ -4,9 +4,9 @@ import Input from 'common/components/input';
 import { adminLogin } from 'api/request.api';
 import SubmitButton from 'common/components';
 import { AuthLayout } from 'layouts/auth-layout';
+import { LoginInitialValues } from 'auth/auth.types';
 import { useModal, Modal } from 'common/components/modal';
 import { loginValidationSchema } from 'auth/auth.validation';
-import { LoginInitialValues } from 'auth/auth.types';
 
 export const Login = () => {
   const loginModal = useModal(true);
