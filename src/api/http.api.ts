@@ -41,16 +41,15 @@ axiosInstance.interceptors.response.use(
       return withError(error.message);
     }
 
-    const {
-      response: { status },
-    } = error;
+    const status = error.response?.status;
+
     const isSignedIn = getAccessToken();
 
     if (status === STATUS_CODE.UNAUTHORIZED && isSignedIn) {
       return handle401Error(error);
     }
 
-    return withError(error.response.data ? error.response.data : error);
+    return withError(error.response?.data ? error.response.data : error);
   }
 );
 

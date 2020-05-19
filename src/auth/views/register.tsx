@@ -1,13 +1,13 @@
 import React from 'react';
 import { Formik } from 'formik';
+import { Link } from 'react-router-dom';
 import Input from 'common/components/input';
 import SubmitButton from 'common/components';
 import { AuthLayout } from 'layouts/auth-layout';
 import { RegisterPayload } from 'auth/auth.types';
+import { registerRestaurant } from 'api/request.api';
 import { useModal, Modal } from 'common/components/modal';
 import { registerValidationSchema } from 'auth/auth.validation';
-import { registerRestaurant } from 'api/request.api';
-import { Link } from 'react-router-dom';
 
 const Register = () => {
   const registerModal = useModal(true);
@@ -28,7 +28,7 @@ const Register = () => {
           onSubmit={async (values, actions) => {
             const { error } = await registerRestaurant(values);
             if (error?.status) {
-              actions.setFieldError('password', error?.message || 'Something went wrong');
+              actions.setFieldError('passwordConfirm', error?.message || 'Something went wrong');
             }
             actions.setSubmitting(false);
           }}
