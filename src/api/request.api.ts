@@ -14,7 +14,11 @@ export const adminLogin = async (payload: { email: string; password: string }) =
 };
 
 export const registerRestaurant = (payload: { name: string; email: string; password: string }) => {
-  return http.post(`/auth/users`, payload);
+  const { data, error } = http.post(`/auth/users`, payload);
+  if (!error && data?.token) {
+    setUserDetails(data);
+  }
+  return { data, error };
 };
 
 export const refreshAccessToken = () => {

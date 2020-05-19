@@ -4,16 +4,18 @@ import Input from 'common/components/input';
 import { adminLogin } from 'api/request.api';
 import SubmitButton from 'common/components';
 import { AuthLayout } from 'layouts/auth-layout';
-import { LoginInitialValues } from 'auth/auth.types';
+import { LoginPayload } from 'auth/auth.types';
 import { useModal, Modal } from 'common/components/modal';
 import { loginValidationSchema } from 'auth/auth.validation';
+import { Link } from 'react-router-dom';
 
-export const Login = () => {
+const Login = () => {
   const loginModal = useModal(true);
-  const initialValues: LoginInitialValues = {
+  const initialValues: LoginPayload = {
     email: '',
     password: '',
   };
+
   return (
     <AuthLayout>
       <Modal title={'Restaurant Login'} {...loginModal.props}>
@@ -30,17 +32,17 @@ export const Login = () => {
           }}
         >
           {(props) => {
-            const error = (field: keyof LoginInitialValues) =>
+            const error = (field: keyof LoginPayload) =>
               props.touched[field] && props.values[field] && props.errors[field] ? props.errors[field] : undefined;
 
-            const fieldInfo = (field: keyof LoginInitialValues) => {
+            const fieldInfo = (field: keyof LoginPayload) => {
               return {
                 email: `We'll never share your email with anyone else.`,
                 password: `At least one Uppercase,lowercase, a special character and of length of 8 letter`,
               }[field];
             };
 
-            const helpText = (field: keyof LoginInitialValues) => {
+            const helpText = (field: keyof LoginPayload) => {
               return error(field) ? error(field) : fieldInfo(field);
             };
 
@@ -73,7 +75,14 @@ export const Login = () => {
             );
           }}
         </Formik>
+        <div className='text-center mt-4'>
+          <Link to='/register' className='primary-link text-primary '>
+            New to Khaja Station?
+          </Link>
+        </div>
       </Modal>
     </AuthLayout>
   );
 };
+
+export default Login;
