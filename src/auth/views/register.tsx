@@ -26,9 +26,9 @@ const Register = () => {
           validationSchema={registerValidationSchema}
           initialValues={initialValues}
           onSubmit={async (values, actions) => {
-            const { error } = await registerRestaurant(values);
-            if (error?.status) {
-              actions.setFieldError('passwordConfirm', error?.message || 'Something went wrong');
+            const { data, error } = await registerRestaurant(values);
+            if (error || !data) {
+              actions.setFieldError('confirmPassword', error?.message || 'Something went wrong');
             }
             actions.setSubmitting(false);
           }}

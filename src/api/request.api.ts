@@ -13,8 +13,8 @@ export const adminLogin = async (payload: { email: string; password: string }) =
   return { data, error };
 };
 
-export const registerRestaurant = (payload: { name: string; email: string; password: string }) => {
-  const { data, error } = http.post(`/auth/users`, payload);
+export const registerRestaurant = async (payload: { name: string; email: string; password: string }) => {
+  const { data, error } = await http.post(`/auth/users`, payload);
   if (!error && data?.token) {
     setUserDetails(data);
   }
