@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
 import Input from 'common/components/input';
 import SubmitButton from 'common/components';
+import { useTranslation } from 'react-i18next';
 import { AuthLayout } from 'layouts/auth-layout';
 import { RegisterPayload } from 'auth/auth.types';
 import { registerRestaurant } from 'api/request.api';
@@ -11,6 +12,7 @@ import { registerValidationSchema } from 'auth/auth.validation';
 
 const Register = () => {
   const registerModal = useModal(true);
+  const { t } = useTranslation();
 
   const initialValues: RegisterPayload = {
     name: '',
@@ -18,17 +20,20 @@ const Register = () => {
     password: '',
     confirmPassword: '',
   };
+
+  const at = (text: string) => t(`auth.${text}`);
+
   return (
     <AuthLayout>
       <Modal title='Register Restaurant' {...registerModal.props}>
         <Formik
           validateOnBlur
-          validationSchema={registerValidationSchema}
           initialValues={initialValues}
+          validationSchema={registerValidationSchema}
           onSubmit={async (values, actions) => {
             const { data, error } = await registerRestaurant(values);
             if (error || !data) {
-              actions.setFieldError('confirmPassword', error?.message || 'Something went wrong');
+              actions.setFieldError('confirmPassword', error?.message || at('SOMETHING_WENT_WRONG'));
             }
             actions.setSubmitting(false);
           }}
@@ -46,53 +51,53 @@ const Register = () => {
             return (
               <form onSubmit={props.handleSubmit}>
                 <Input
-                  title='Restaurant Name'
                   name='name'
                   type='text'
-                  placeholder='Enter Restaurant name'
                   error={!!error('name')}
+                  title={at('RESTAURANT_NAME')}
                   helperText={helpText('name')}
-                  handleChange={props.handleChange}
                   handleOnBlur={props.handleBlur}
+                  handleChange={props.handleChange}
+                  placeholder={at('ENTER_RESTAURANT_NAME')}
                 />
                 <Input
-                  title='Email'
                   name='email'
                   type='email'
-                  placeholder='Enter your email address'
+                  title={at('EMAIL')}
                   error={!!error('email')}
                   helperText={helpText('email')}
-                  handleChange={props.handleChange}
+                  placeholder={at('ENTER_EMAIL')}
                   handleOnBlur={props.handleBlur}
+                  handleChange={props.handleChange}
                 />
                 <Input
-                  title='Password'
                   name='password'
                   type='password'
-                  placeholder='Enter password'
+                  title={at('PASSWORD')}
                   error={!!error('password')}
+                  handleOnBlur={props.handleBlur}
                   helperText={helpText('password')}
                   handleChange={props.handleChange}
-                  handleOnBlur={props.handleBlur}
+                  placeholder={at('ENTER_PASSWORD')}
                 />
                 <Input
-                  title='Confirm Password'
-                  name='confirmPassword'
                   type='password'
-                  placeholder='Confirm password'
-                  error={!!error('confirmPassword')}
-                  helperText={helpText('confirmPassword')}
-                  handleChange={props.handleChange}
+                  name='confirmPassword'
+                  title={at('CONFIRM_PASSWORD')}
                   handleOnBlur={props.handleBlur}
+                  handleChange={props.handleChange}
+                  error={!!error('confirmPassword')}
+                  placeholder={at('CONFIRM_PASSWORD')}
+                  helperText={helpText('confirmPassword')}
                 />
-                <SubmitButton loading={props.isSubmitting} text='Register' disabled={!isValid()} />
+                <SubmitButton loading={props.isSubmitting} text={at('REGISTER')} disabled={!isValid()} />
               </form>
             );
           }}
         </Formik>
         <div className='text-center mt-4'>
           <Link to='/login' className='primary-link text-primary '>
-            Already have Account?
+            {at('ALREADY_HAVE_ACCOUNT')}
           </Link>
         </div>
       </Modal>
