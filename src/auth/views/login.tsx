@@ -1,13 +1,14 @@
 import React from 'react';
 import { Formik } from 'formik';
+import LoginForm from './login-form';
 import { Link } from 'react-router-dom';
-import { adminLogin } from 'api/request.api';
+import { login } from 'auth/auth.service';
 import { LoginPayload } from 'auth/auth.types';
 import { useTranslation } from 'react-i18next';
 import { AuthLayout } from 'layouts/auth-layout';
+import { useAuthDispatch } from '../auth.context';
 import { useModal, Modal } from 'common/components/modal';
 import { loginValidationSchema } from 'auth/auth.validation';
-import LoginForm from './login-form';
 
 const initialValues: LoginPayload = {
   email: '',
@@ -17,6 +18,7 @@ const initialValues: LoginPayload = {
 const Login = () => {
   const { t } = useTranslation();
   const loginModal = useModal(true);
+  const dispatch = useAuthDispatch();
 
   const at = (text: string) => t(`auth.${text}`);
 
@@ -28,10 +30,7 @@ const Login = () => {
           initialValues={initialValues}
           validationSchema={loginValidationSchema}
           onSubmit={async (values, actions) => {
-            const { error } = await adminLogin(values);
-            if (error?.status) {
-              actions.setFieldError('password', error?.message || 'Something went wrong');
-            }
+            await login({ dispatch, payload: values });
             actions.setSubmitting(false);
           }}
         >

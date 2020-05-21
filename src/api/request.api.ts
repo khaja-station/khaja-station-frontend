@@ -4,7 +4,7 @@ export const signWithGoogle = (token: string | null) => {
   return http.get(`/auth/google/${token}`);
 };
 
-export const adminLogin = (payload: { email: string; password: string }) => {
+export const restaurantLogin = (payload: { email: string; password: string }) => {
   return http.post(`/auth/signin`, payload);
 };
 
