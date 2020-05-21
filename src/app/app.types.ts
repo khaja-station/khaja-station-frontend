@@ -4,12 +4,14 @@ export const appTypes = {
 };
 
 export enum StorageKey {
-  TOKEN = 'token',
-  RULES = 'rules',
-  TOKEN_TYPE = 'tokenType',
-  USER_DETAILS = 'userDetails',
+  AUTH = 'auth',
 }
 
 export interface StringKeyObject {
   [key: string]: any;
+}
+
+export enum Theme {
+  DARK = 'DARK',
+  LIGHT = 'LIGHT',
 }

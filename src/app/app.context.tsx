@@ -1,7 +1,6 @@
 import React, { createContext } from 'react';
 
-import { Theme } from './app.enum';
-import { appTypes } from './app.types';
+import { appTypes, Theme } from './app.types';
 
 interface AppProviderProps {
   children: React.ReactNode;

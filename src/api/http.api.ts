@@ -1,9 +1,10 @@
 import axios from 'axios';
 import env from 'app/app.env';
+import { storage } from 'app/app.storage';
+import { StorageKey } from 'app/app.types';
 import { STATUS_CODE } from 'app/app.status';
 import { refreshAccessToken } from 'api/request.api';
 import { withError, withData } from 'common/common-helper';
-import { getAccessToken, changeAccessToken } from 'app/app.storage';
 
 const axiosInstance = axios.create({
   baseURL: env.BASE_URL,
@@ -43,7 +44,7 @@ axiosInstance.interceptors.response.use(
 
     const status = error.response?.status;
 
-    const isSignedIn = getAccessToken();
+    const isSignedIn = storage.get(StorageKey.AUTH);
 
     if (status === STATUS_CODE.UNAUTHORIZED && isSignedIn) {
       return handle401Error(error);
@@ -63,7 +64,7 @@ const handle401Error = (error: any) => {
         const { data } = res;
         isRefreshing = false;
         onRefreshed(data.token);
-        changeAccessToken(data.token);
+        storage.changeAccessToken(data.token);
 
         return (refreshSubscribers = []);
       }
@@ -87,7 +88,7 @@ export function get(url: string, params: object = {}): any {
     url,
     params,
     headers: {
-      authorization: `Bearer ${getAccessToken()}`,
+      authorization: `Bearer ${storage.accessToken()}`,
     },
   });
 }
@@ -99,7 +100,7 @@ export function post(url: string, data: any, auth: boolean = true): any {
     data,
     headers: auth
       ? {
-          authorization: `Bearer ${getAccessToken()}`,
+          authorization: `Bearer ${storage.accessToken()}`,
         }
       : undefined,
   });
@@ -111,7 +112,7 @@ export function put(url: string, data: any): any {
     url,
     data,
     headers: {
-      authorization: `Bearer ${getAccessToken()} `,
+      authorization: `Bearer ${storage.accessToken()} `,
     },
   });
 }
@@ -122,7 +123,7 @@ export function remove(url: string, params: object = {}): any {
     url,
     params,
     headers: {
-      authorization: `Bearer ${getAccessToken()} `,
+      authorization: `Bearer ${storage.accessToken()} `,
     },
   });
 }
