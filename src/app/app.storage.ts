@@ -50,9 +50,9 @@ export const storage = {
   changeAccessToken(token: string) {
     const { data, error } = this.get(StorageKey.AUTH);
     if (error || !data) {
-      this.set(StorageKey.AUTH, token);
+      this.set(StorageKey.AUTH, { token });
     } else {
-      const authDetails = [...Array.from(data as []), token];
+      const authDetails = { ...data, token };
       this.set(StorageKey.AUTH, authDetails);
     }
   },
