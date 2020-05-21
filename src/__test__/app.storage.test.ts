@@ -35,7 +35,7 @@ describe('App Storage Test', () => {
     expect(Array.isArray(retrievedData?.roles)).toBeTruthy();
   });
 
-  test.only('should return isSigned', () => {
+  test('should return isSigned', () => {
     const { data: retrievedData } = storage.get(StorageKey.AUTH);
     expect(retrievedData?.isSignedIn).toBe(true);
   });

@@ -1,3 +1,5 @@
+import { FormikProps } from 'formik';
+
 export interface LoginPayload {
   email: string;
   password: string;
@@ -30,4 +32,12 @@ export interface AuthType {
   roles?: RoleEnum[];
   isSigningIn: boolean;
   isAuthenticated: boolean;
+}
+
+export interface LoginFormProps {
+  props: FormikProps<LoginPayload>;
+}
+
+export interface RegisterFormProps {
+  props: FormikProps<RegisterPayload>;
 }

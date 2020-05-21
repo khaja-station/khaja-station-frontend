@@ -69,3 +69,11 @@ export const getRandomInt = (min: number, max: number) => {
 
   return Math.floor(Math.random() * (max - min)) + min;
 };
+
+export const makeTypes = (type: string) => {
+  return {
+    [type]: type,
+    [`${type}_SUCCESS`]: `${type}_SUCCESS`,
+    [`${type}_FAILURE`]: `${type}_FAILURE`,
+  };
+};

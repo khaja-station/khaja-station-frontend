@@ -1,3 +1,6 @@
+import { storage } from 'app/app.storage';
+import { StorageKey } from 'app/app.types';
+import { auth } from './auth-context.types';
 import React, { createContext } from 'react';
 import { AuthType, Dispatch, AuthProviderType } from './auth.types';
 
@@ -14,12 +17,26 @@ const AuthDispatchContext = createContext<Dispatch | undefined>(undefined);
 
 function authReducer(state: AuthType = initialState, action: any) {
   switch (action.type) {
-    case 'SIGNIN': {
-      return { ...state };
+    case auth.SIGN_IN: {
+      return { ...state, isSigningIn: true };
     }
-    case 'SIGNIN_SUCCESS': {
-      return { ...state };
+
+    case auth.SIGN_IN_SUCCESS: {
+      storage.set(StorageKey.AUTH, action.payload);
+      return {
+        ...state,
+        isSigningIn: false,
+        isAuthenticated: true,
+        user: action.payload.user,
+        token: action.payload.token,
+        roles: action.payload.roles,
+      };
     }
+
+    case auth.SIGN_IN_FAILURE: {
+      return { ...state, isSigningIn: false, isAuthenticated: false };
+    }
+
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
