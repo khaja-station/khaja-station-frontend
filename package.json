@@ -13,8 +13,10 @@
     "@types/react-icons": "^3.0.0",
     "@types/react-router-dom": "^5.1.5",
     "@types/react-transition-group": "^4.2.4",
+    "@types/yup": "^0.28.3",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
+    "formik": "^2.1.4",
     "i18next": "^19.4.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -23,7 +25,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-transition-group": "^4.4.1",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "yup": "^0.28.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -57,9 +60,11 @@
     ]
   },
   "devDependencies": {
+    "@types/react-test-renderer": "^16.9.2",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2",
     "prettier": "^2.0.5",
+    "react-test-renderer": "^16.13.1",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^5.0.0",

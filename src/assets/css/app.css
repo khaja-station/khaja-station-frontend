@@ -10001,6 +10001,10 @@ a:hover {
   opacity: 0.7;
 }
 
+.show {
+  display: block;
+}
+
 .left-icon {
   padding-right: 1rem;
 }
@@ -10011,6 +10015,14 @@ a:hover {
 
 .outline {
   outline: 1px dotted yellow;
+}
+
+.model-hide {
+  display: none;
+}
+
+.modal-show {
+  display: block;
 }
 
 .theme--light .app-wrapper {
@@ -10039,6 +10051,20 @@ a:hover {
 .sidebar-wrapper {
   padding: 1rem;
   outline: 1px solid red;
+}
+
+.auth-layout-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 50%;
+  height: 500px;
 }
 
 .top-navbar {
@@ -10171,5 +10197,17 @@ a:hover {
   transition: opacity 1000ms, -webkit-transform 1000ms;
   transition: opacity 1000ms, transform 1000ms;
   transition: opacity 1000ms, transform 1000ms, -webkit-transform 1000ms;
+}
+
+.modal-backdrop {
+  color: black;
+}
+
+.theme--light .modal-backdrop {
+  background-color: #eee;
+}
+
+.theme--dark .modal-backdrop {
+  background-color: #363537;
 }
 /*# sourceMappingURL=app.css.map */

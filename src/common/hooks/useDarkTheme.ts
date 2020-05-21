@@ -1,6 +1,5 @@
+import { Theme } from 'app/app.types';
 import { useEffect, useState } from 'react';
-
-import { Theme } from '../../app/app.enum';
 
 export const useDarkTheme = (): [Theme, () => void] => {
   const [theme, setTheme] = useState<Theme>(Theme.DARK);

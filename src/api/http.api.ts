@@ -1,6 +1,7 @@
 import axios from 'axios';
 import env from 'app/app.env';
-import { Token } from 'api/token.api';
+import { storage } from 'app/app.storage';
+import { StorageKey } from 'app/app.types';
 import { STATUS_CODE } from 'app/app.status';
 import { refreshAccessToken } from 'api/request.api';
 import { withError, withData } from 'common/common-helper';
@@ -38,20 +39,18 @@ axiosInstance.interceptors.response.use(
   },
   (error: any): any => {
     if (error.message === STATUS_CODE.NETWORK_ERROR) {
-      // Toast with error message
       return withError(error.message);
     }
 
-    const {
-      response: { status },
-    } = error;
-    const isSignedIn = Token.getAccessToken();
+    const status = error.response?.status;
+
+    const isSignedIn = storage.get(StorageKey.AUTH);
 
     if (status === STATUS_CODE.UNAUTHORIZED && isSignedIn) {
       return handle401Error(error);
     }
 
-    return withError(error.response ? error.response.data : error);
+    return withError(error.response?.data ? error.response.data : error);
   }
 );
 
@@ -65,7 +64,7 @@ const handle401Error = (error: any) => {
         const { data } = res;
         isRefreshing = false;
         onRefreshed(data.token);
-        Token.refreshAccessToken(data.token);
+        storage.changeAccessToken(data.token);
 
         return (refreshSubscribers = []);
       }
@@ -89,19 +88,21 @@ export function get(url: string, params: object = {}): any {
     url,
     params,
     headers: {
-      authorization: `Bearer ${Token.getAccessToken()}`,
+      authorization: `Bearer ${storage.accessToken()}`,
     },
   });
 }
 
-export function post(url: string, data: any): any {
+export function post(url: string, data: any, auth: boolean = true): any {
   return axiosInstance({
     method: 'post',
     url,
     data,
-    headers: {
-      authorization: `Bearer ${Token.getAccessToken()}`,
-    },
+    headers: auth
+      ? {
+          authorization: `Bearer ${storage.accessToken()}`,
+        }
+      : undefined,
   });
 }
 
@@ -111,7 +112,7 @@ export function put(url: string, data: any): any {
     url,
     data,
     headers: {
-      authorization: `Bearer ${Token.getAccessToken()} `,
+      authorization: `Bearer ${storage.accessToken()} `,
     },
   });
 }
@@ -122,7 +123,7 @@ export function remove(url: string, params: object = {}): any {
     url,
     params,
     headers: {
-      authorization: `Bearer ${Token.getAccessToken()} `,
+      authorization: `Bearer ${storage.accessToken()} `,
     },
   });
 }

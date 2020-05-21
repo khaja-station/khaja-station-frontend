@@ -1,5 +1,9 @@
 {
     "cSpell.words": [
+        "KHAJA",
+        "formik",
+        "signin",
         "unmount"
-    ]
+    ],
+    "deepscan.enable": true
 }
