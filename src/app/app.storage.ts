@@ -1,36 +1,39 @@
-import { StorageKey } from './app.types';
-import { serialize, parse } from 'common/common-helper';
+import errors from 'lang/en/errors.json';
+import { serialize, parse, withError, withData } from 'common/common-helper';
 
-const l = localStorage || window.localStorage;
+const hasLocalStorage = localStorage || window.localStorage;
+export const storage = {
+  get(key: string) {
+    const { error, data } = parse(localStorage.getItem(key) || '');
 
-export const getItem = (key: StorageKey) => {
-  return l.getItem(key);
-};
+    if (error) {
+      return withError(error);
+    }
 
-export const setItem = (key: StorageKey, item: string) => {
-  l.setItem(key, item);
-};
+    if (!hasLocalStorage) {
+      return withError(errors.NO_LOCAL_STORAGE_FOUND);
+    }
 
-export const setUserDetails = (data: any) => {
-  const serializedData = serialize(data);
+    return withData(data);
+  },
 
-  setItem(StorageKey.USER_DETAILS, serializedData);
-};
+  set(key: string, value: any) {
+    if (!hasLocalStorage) {
+      return withError(errors.NO_LOCAL_STORAGE_FOUND);
+    }
 
-export const getAccessToken = () => {
-  const localData = getItem(StorageKey.USER_DETAILS);
-  const parsedDetails: any = parse(localData || '');
+    return withData(localStorage.setItem(key, serialize(value)));
+  },
 
-  return parsedDetails?.token || null;
-};
-
-export const changeAccessToken = (token: string) => {
-  const localData = getItem(StorageKey.USER_DETAILS);
-  if (!localData) {
-    const serializedToken = serialize({ token });
-    setItem(StorageKey.USER_DETAILS, serializedToken);
-  } else {
-    const userDetails = { ...parse(localData), token };
-    setItem(StorageKey.USER_DETAILS, serialize(userDetails));
-  }
+  clear(key: string | null = null) {
+    if (!hasLocalStorage) {
+      return withError(errors.NO_LOCAL_STORAGE_FOUND);
+    }
+    if (!key) {
+      localStorage.clear();
+    } else {
+      localStorage.removeItem(key);
+    }
+    return withData(localStorage.getItem(key || ''));
+  },
 };

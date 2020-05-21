@@ -9,3 +9,7 @@ export enum StorageKey {
   TOKEN_TYPE = 'tokenType',
   USER_DETAILS = 'userDetails',
 }
+
+export interface StringKeyObject {
+  [key: string]: any;
+}

@@ -1,4 +1,5 @@
 import { ApiResponse } from 'api/api.types';
+import { StringKeyObject } from 'app/app.types';
 
 const toString = Object.prototype.toString;
 
@@ -36,7 +37,7 @@ export const withData = (data: any): ApiResponse => ({
 
 export const serialize = (data: object): string => JSON.stringify(data);
 
-export const parse = (data: string): object => {
+export const parse = (data: string): StringKeyObject => {
   try {
     const parsedData = JSON.parse(data);
 
@@ -48,8 +49,6 @@ export const parse = (data: string): object => {
 
 export const isEmpty = (value: any) =>
   !value ||
-  value === undefined ||
-  value === null ||
   (typeof value === 'object' && Object.keys(value).length === 0) ||
   (typeof value === 'string' && value.trim().length === 0);
 
