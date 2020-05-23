@@ -1,7 +1,7 @@
 import React from 'react';
-import { InputType } from './component.type';
+import { InputType } from '../component.type';
 
-const Input: React.FC<InputType> = ({
+const TextInput: React.FC<InputType> = ({
   name,
   title,
   helperText,
@@ -34,4 +34,4 @@ const Input: React.FC<InputType> = ({
   );
 };
 
-export default Input;
+export default TextInput;

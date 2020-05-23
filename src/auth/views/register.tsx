@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
 import RegisterForm from './register-form';
 import { useTranslation } from 'react-i18next';
-import { AuthLayout } from 'layouts/auth-layout';
+import { AuthLayout } from 'layouts/auth.layout';
 import { RegisterPayload } from 'auth/auth.types';
 import { registerRestaurant } from 'api/request.api';
 import { useModal, Modal } from 'common/components/modal';

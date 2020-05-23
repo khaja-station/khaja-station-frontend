@@ -1,0 +1,17 @@
+.card {
+  @include themed() {
+    background-color: t($bg-card);
+  }
+}
+
+.theme--dark {
+  .card-header {
+    border-bottom: 1px solid darken($text--dark, 40%);
+  }
+}
+
+.theme--light {
+  .card-header {
+    border-bottom: 1px solid lighten($text--light, 60%);
+  }
+}

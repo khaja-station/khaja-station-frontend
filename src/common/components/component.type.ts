@@ -5,12 +5,29 @@ export interface ButtonProps {
 }
 
 export interface InputType {
+  value?: string | number | File;
   name: string;
   type?: string;
   title: string;
   error?: boolean;
   helperText?: string;
   placeholder?: string;
+  handleChange: (e: string | any) => void;
+  handleOnBlur?: (e: string | any) => void;
+}
+
+export interface OptionType {
+  name: string;
+  value: string | number;
+}
+
+export interface SelectProps {
+  name: string;
+  title: string;
+  error?: boolean;
+  helperText?: string;
+  options: OptionType[];
+  value?: string | number;
   handleChange: (e: string | any) => void;
   handleOnBlur?: (e: string | any) => void;
 }

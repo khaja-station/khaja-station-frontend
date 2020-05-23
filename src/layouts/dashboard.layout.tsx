@@ -3,7 +3,7 @@ import Sidebar from 'sidebar/views/sidebar';
 interface Props {}
 
 const sidebar = <Sidebar />;
-const MenuDashboardLayout: React.FC<Props> = ({ children }) => {
+const DashboardLayout: React.FC<Props> = ({ children }) => {
   return (
     <div className='container-fluid menu-dashboard-layout-wrapper'>
       <div className='row'>
@@ -16,4 +16,4 @@ const MenuDashboardLayout: React.FC<Props> = ({ children }) => {
     </div>
   );
 };
-export default MenuDashboardLayout;
+export default DashboardLayout;

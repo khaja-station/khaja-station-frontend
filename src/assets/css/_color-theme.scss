@@ -1,12 +1,14 @@
-$bg: "bg";
-$primary: "primary";
-$secondary: "secondary";
-$text: "text";
+$bg: 'bg';
+$text: 'text';
+$primary: 'primary';
+$bg-card: 'bg-card';
+$secondary: 'secondary';
 
 $themes: (
   light: (
     bg: $bg--light,
     text: $text--light,
+    bg-card: $bg-card--light,
     primary: $primary--light,
     secondary: $secondary--light,
   ),
@@ -14,6 +16,7 @@ $themes: (
     bg: $bg--dark,
     text: $text--dark,
     primary: $primary--dark,
+    bg-card: $bg-card--dark,
     secondary: $secondary--dark,
   ),
 );
@@ -23,7 +26,7 @@ $themes: (
     .theme--#{$theme} & {
       $theme-map: () !global;
       @each $key, $submap in $map {
-        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $value: map-get(map-get($themes, $theme), '#{$key}');
         $theme-map: map-merge(
           $theme-map,
           (

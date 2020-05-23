@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from 'common/components/input';
+import Input from 'common/components/input/text.input';
 import SubmitButton from 'common/components';
 import { useTranslation } from 'react-i18next';
 import { RegisterFormProps, RegisterPayload } from 'auth/auth.types';

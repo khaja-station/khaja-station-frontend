@@ -2,7 +2,6 @@ export interface SidebarPropertyType {
   title: string;
   route: string;
   icon?: React.ReactNode;
-  component: React.ReactNode;
 }
 
 export interface SidebarItemType {

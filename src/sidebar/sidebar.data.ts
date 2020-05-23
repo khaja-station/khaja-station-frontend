@@ -9,7 +9,7 @@ export const sidebarData = {
   food: [
     {
       title: 'FOOD_CATEGORY',
-      route: '/food-category',
+      route: '/cat',
       component: 'FoodCategory',
     },
     {
