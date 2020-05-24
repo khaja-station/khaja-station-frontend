@@ -14,7 +14,7 @@ const initialValue: CategoryPayload = {
 
 const AddFoodCategory = () => {
   return (
-    <div className='card'>
+    <div className='card p-3'>
       <h4 className='card-header'>{'Add Food Category'}</h4>
       <div className='card-body'>
         <Formik

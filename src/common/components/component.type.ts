@@ -31,3 +31,8 @@ export interface SelectProps {
   handleChange: (e: string | any) => void;
   handleOnBlur?: (e: string | any) => void;
 }
+
+export interface TableProps {
+  bodyEl: React.ReactNode;
+  headerEl: React.ReactNode;
+}

@@ -9,7 +9,7 @@ const initialState: AuthType = {
   token: undefined,
   roles: undefined,
   isSigningIn: false,
-  isAuthenticated: true,
+  isAuthenticated: false,
 };
 
 const AuthStateContext = createContext<AuthType | undefined>(undefined);

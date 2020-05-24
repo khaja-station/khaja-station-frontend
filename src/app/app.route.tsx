@@ -1,9 +1,10 @@
 import React from 'react';
 import { Login, Register } from 'auth';
 import Address from 'profile/views/address';
+import FoodCategory from 'food/views/category';
+import PrivateRoute from './app.private-route';
 import { DashboardView } from 'dashboard/views';
 import { Switch, Route } from 'react-router-dom';
-import FoodCategory from 'food/views/category';
 
 function AppRoute() {
   const dashboardPath = '(/|/dashboard)';
@@ -12,9 +13,9 @@ function AppRoute() {
       <Switch>
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />
-        <Route exact path='/address' component={Address} />
-        <Route exact path='/category' component={FoodCategory} />
-        <Route exact path={dashboardPath} component={DashboardView} />
+        <PrivateRoute exact path='/address' component={Address} />
+        <PrivateRoute exact path='/category' component={FoodCategory} />
+        <PrivateRoute exact path={dashboardPath} component={DashboardView} />
       </Switch>
     </>
   );
