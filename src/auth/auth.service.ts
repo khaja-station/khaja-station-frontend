@@ -12,7 +12,7 @@ export const login = async ({ dispatch, payload }: LoginServicePayload): Promise
   const { data, error } = await restaurantLogin(payload);
 
   if (error) {
-    dispatch({ type: auth.SIGN_IN_ERROR });
+    dispatch({ type: auth.SIGN_IN_FAILURE });
   }
 
   dispatch({
