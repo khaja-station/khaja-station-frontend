@@ -1,25 +1,20 @@
 import React, { useState } from 'react';
 import Table from 'common/components/table';
 import { FaChevronRight, FaChevronDown } from 'react-icons/fa';
+import categories from '__mocks__/categories.mock.json';
 
 const headers = ['', '#', 'Title', 'Description', '', ''];
-const categories = [
-  {
-    id: 1,
-    title: 'Italian',
-    description: 'Eu incididunt officia esse velit id quis Lorem pariatur.',
-    edit: <button className='btn-primary btn-block p-1'>Edit</button>,
-    delete: <button className='btn-danger btn-block p-1'>Delete</button>,
-  },
-  {
-    id: 2,
-    title: 'Continental',
-    description:
-      'Et ad et duis occaecat quis ex aliqua magna ipsum.Et ad et duis occaecat quis ex aliqua magna ipsum.Et ad et duis occaecat quis ex aliqua magna ipsum.Et ad et duis occaecat quis ex aliqua magna ipsum.Et ad et duis occaecat quis ex aliqua magna ipsum.Et ad et duis occaecat quis ex aliqua magna ipsum.Et ad et duis occaecat quis ex aliqua magna ipsum.Et ad et duis occaecat quis ex aliqua magna ipsum.Et ad et duis occaecat quis ex aliqua magna ipsum.Et ad et duis occaecat quis ex aliqua magna ipsum. ',
-    edit: <button className='btn-primary btn-block p-1'>Edit</button>,
-    delete: <button className='btn-danger btn-block p-1'>Delete</button>,
-  },
-];
+
+const EditButton: React.FC<{ onPress: () => void }> = ({ onPress }) => (
+  <button className='btn-primary btn-block p-1' onClick={onPress}>
+    Edit
+  </button>
+);
+const DeleteButton: React.FC<{ onPress: () => void }> = ({ onPress }) => (
+  <button className='btn-danger btn-block p-1' onClick={onPress}>
+    Delete
+  </button>
+);
 
 const headerEl = headers.map((header, index) => (
   <th key={index} scope='col'>
@@ -37,19 +32,19 @@ interface CategoryProps {
 }
 
 const Categories: React.FC<CategoryProps> = ({ expanded, select }) => {
-  const categoryList = categories.map((cat, index) => {
+  const categoryList = categories.result.map((cat, index) => {
     const selected = expanded === cat.id;
     return (
       <React.Fragment key={index}>
         <tr>
           <td onClick={() => select(cat.id)}>{selected ? <FaChevronDown /> : <FaChevronRight />}</td>
           <td>{cat.id}</td>
-          <td>{cat.title}</td>
+          <td>{cat.name}</td>
           <td className='text-truncate' style={{ maxWidth: 250 }}>
             {cat.description}
           </td>
-          <td>{cat.edit}</td>
-          <td>{cat.delete}</td>
+          <td>{<EditButton onPress={() => {}} />}</td>
+          <td>{<DeleteButton onPress={() => {}} />}</td>
         </tr>
         {selected ? (
           <tr>

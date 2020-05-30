@@ -1,9 +1,9 @@
 import React from 'react';
-import Input from 'common/components/input/text.input';
 import SubmitButton from 'common/components';
 import { useTranslation } from 'react-i18next';
-import TextArea from 'common/components/input/text-area.input';
+import Input from 'common/components/input/text.input';
 import FileInput from 'common/components/input/file.input';
+import TextArea from 'common/components/input/text-area.input';
 import SelectInput from 'common/components/input/select.input';
 import { AddCategoryFormProps, CategoryPayload } from 'food/food.type';
 
