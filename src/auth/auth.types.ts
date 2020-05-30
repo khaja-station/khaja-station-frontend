@@ -1,4 +1,5 @@
 import { FormikProps } from 'formik';
+import { StringKeyObject } from 'common/common.types';
 
 export interface LoginPayload {
   email: string;
@@ -11,11 +12,6 @@ export interface RegisterPayload {
   password: string;
   confirmPassword: string;
 }
-
-export interface AuthProviderType {
-  children: React.ReactNode;
-}
-export type Dispatch = (action: any) => void;
 
 export interface UserType {
   [key: string]: any;
@@ -40,4 +36,9 @@ export interface LoginFormProps {
 
 export interface RegisterFormProps {
   props: FormikProps<RegisterPayload>;
+}
+
+export interface LoginServicePayload {
+  dispatch: (args: StringKeyObject) => void;
+  payload: LoginPayload;
 }

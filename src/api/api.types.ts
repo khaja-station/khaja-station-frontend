@@ -1,4 +1,4 @@
-import { StringKeyObject } from 'app/app.types';
+import { StringKeyObject } from 'common/common.types';
 
 export interface ApiResponse {
   data: StringKeyObject | null;

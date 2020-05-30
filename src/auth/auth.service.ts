@@ -1,12 +1,7 @@
-import { LoginPayload } from './auth.types';
 import { auth } from './auth-context.types';
-import { StringKeyObject } from 'app/app.types';
 import { restaurantLogin } from 'api/request.api';
+import { LoginServicePayload } from './auth.types';
 
-export interface LoginServicePayload {
-  dispatch: (args: StringKeyObject) => void;
-  payload: LoginPayload;
-}
 export const login = async ({ dispatch, payload }: LoginServicePayload): Promise<void> => {
   dispatch({ type: auth.SIGN_IN });
   const { data, error } = await restaurantLogin(payload);

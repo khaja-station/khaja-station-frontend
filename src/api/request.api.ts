@@ -1,5 +1,8 @@
 import * as http from './http.api';
 
+import { urls } from './api.url';
+import { CategoryPayload } from 'food/food.type';
+
 export const signWithGoogle = (token: string | null) => {
   return http.get(`/auth/google/${token}`);
 };
@@ -14,4 +17,8 @@ export const registerRestaurant = (payload: { name: string; email: string; passw
 
 export const refreshAccessToken = () => {
   return http.get(`/auth/refresh-token`);
+};
+
+export const addCategory = (payload: CategoryPayload) => {
+  return http.post(urls.food.CATEGORY, payload);
 };

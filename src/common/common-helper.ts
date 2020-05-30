@@ -1,5 +1,5 @@
 import { ApiResponse } from 'api/api.types';
-import { StringKeyObject } from 'app/app.types';
+import { StringKeyObject } from './common.types';
 
 const toString = Object.prototype.toString;
 

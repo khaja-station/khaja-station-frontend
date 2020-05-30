@@ -1,8 +1,10 @@
 import { storage } from 'app/app.storage';
 import { StorageKey } from 'app/app.types';
-import { auth } from './auth-context.types';
 import React, { createContext } from 'react';
-import { AuthType, Dispatch, AuthProviderType } from './auth.types';
+import { Children, Dispatch } from 'common/common.types';
+
+import { AuthType } from './auth.types';
+import { auth } from './auth-context.types';
 
 const initialState: AuthType = {
   user: undefined,
@@ -43,7 +45,7 @@ function authReducer(state: AuthType = initialState, action: any) {
   }
 }
 
-function AuthProvider({ children }: AuthProviderType) {
+function AuthProvider({ children }: Children) {
   const [state, dispatch] = React.useReducer(authReducer, initialState);
   return (
     <AuthStateContext.Provider value={state}>
