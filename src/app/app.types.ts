@@ -11,3 +11,8 @@ export enum Theme {
   DARK = 'DARK',
   LIGHT = 'LIGHT',
 }
+
+export interface ApiResponse {
+  data: any;
+  error: any;
+}

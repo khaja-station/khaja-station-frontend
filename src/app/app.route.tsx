@@ -1,12 +1,12 @@
 import React from 'react';
 import { Login, Register } from 'auth';
+import FoodRoute from 'food/food.route';
 import Address from 'profile/views/address';
-import FoodCategory from 'food/views/category';
-import PrivateRoute from './app.private-route';
 import { DashboardView } from 'dashboard/views';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { FoodProvider } from 'food/food.context';
+import { Switch, Route } from 'react-router-dom';
 import NotFound from 'common/components/not-found';
+
+import PrivateRoute from './app.private-route';
 
 function AppRoute() {
   const dashboardPath = '(/|/dashboard)';
@@ -15,24 +15,17 @@ function AppRoute() {
       <Switch>
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />
+
         <PrivateRoute exact path='/address' component={Address} />
-        <FoodRoute />
+
+        <Route path='/food'>
+          <FoodRoute />
+        </Route>
+
         <PrivateRoute exact path={dashboardPath} component={DashboardView} />
         <Route exact path={'/404'} component={NotFound} />
       </Switch>
     </>
-  );
-}
-
-function FoodRoute() {
-  return (
-    <Switch>
-      <FoodProvider>
-        <PrivateRoute exact path='/category' component={FoodCategory} />
-        <Route exact path={'/404'} component={NotFound} />
-        <Redirect to={'/404'} />
-      </FoodProvider>
-    </Switch>
   );
 }
 

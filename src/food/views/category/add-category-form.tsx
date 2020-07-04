@@ -9,6 +9,10 @@ import { AddCategoryFormProps, CategoryPayload } from 'food/food.type';
 
 const parentOptions = [
   {
+    name: 'Select',
+    value: '',
+  },
+  {
     name: 'one',
     value: 1,
   },
@@ -42,14 +46,15 @@ const AddCategoryForm: React.FC<AddCategoryFormProps> = ({ props }) => {
     <form onSubmit={props.handleSubmit}>
       <Input
         type='text'
-        name='title'
-        error={!!error('title')}
+        name='name'
+        error={!!error('name')}
         title={ft('CATEGORY_NAME')}
-        helperText={helpText('title')}
+        helperText={helpText('name')}
         handleOnBlur={props.handleBlur}
         placeholder={ft('CATEGORY_NAME')}
         handleChange={props.handleChange}
       />
+
       <TextArea
         name='description'
         error={!!error('description')}
@@ -59,14 +64,16 @@ const AddCategoryForm: React.FC<AddCategoryFormProps> = ({ props }) => {
         title={ft('CATEGORY_DESCRIPTION')}
         placeholder={ft('CATEGORY_DESCRIPTION')}
       />
+
       <FileInput
-        type='text'
+        type='file'
         name='featuredImage'
         title={ft('FEATURED_IMAGE')}
         handleOnBlur={props.handleBlur}
         error={!!error('featuredImage')}
         placeholder={ft('FEATURED_IMAGE')}
         helperText={helpText('featuredImage')}
+        value={props.values.featuredImage}
         handleChange={(event) => {
           props.setFieldValue('featuredImage', event.currentTarget.files[0]);
         }}

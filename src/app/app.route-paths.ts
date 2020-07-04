@@ -6,23 +6,23 @@ export const appRoutes = {
   food: [
     {
       title: 'FOOD_CATEGORY',
-      route: '/category',
+      route: '/food/cat',
     },
     {
       title: 'FOOD_LIST',
-      route: '/food-list',
+      route: '/food/list',
     },
     {
       title: 'FOOD_GRID',
-      route: '/food-grid',
+      route: '/food/grid',
     },
     {
       title: 'FOOD_ITEM',
-      route: '/food-category',
+      route: '/food/item',
     },
     {
       title: 'ADD_FOOD',
-      route: '/add-food',
+      route: '/food/add',
     },
   ],
   order: {

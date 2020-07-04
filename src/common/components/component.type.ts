@@ -12,6 +12,7 @@ export interface InputType {
   error?: boolean;
   helperText?: string;
   placeholder?: string;
+  classNames?: [string];
   handleChange: (e: string | any) => void;
   handleOnBlur?: (e: string | any) => void;
 }

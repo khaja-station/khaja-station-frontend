@@ -6,14 +6,14 @@ export interface AddCategoryFormProps {
 }
 
 export interface CategoryPayload {
-  title: string;
+  name: string;
   description: string;
   promotionId?: number | string;
   featuredImage?: File;
   parentId?: number | string;
 }
 
-export interface CategoryAddPayload {
+export interface AddCategoryPayload {
   dispatch: (args: StringKeyObject) => void;
   payload: CategoryPayload;
 }

@@ -4,6 +4,7 @@ import { InputType } from '../component.type';
 const FileInput: React.FC<InputType> = ({
   name,
   title,
+  value,
   helperText,
   handleChange,
   handleOnBlur,
@@ -11,6 +12,7 @@ const FileInput: React.FC<InputType> = ({
   placeholder = 'Enter value',
 }) => {
   const helperTextClass = error ? `show invalid-feedback` : `form-text text-muted`;
+
   return (
     <div className='form-group pt-3'>
       <label>{title}</label>
@@ -21,12 +23,12 @@ const FileInput: React.FC<InputType> = ({
           accept='image/*'
           onBlur={handleOnBlur}
           onChange={handleChange}
-          id='validatedCustomFile'
-          className='custom-file-input'
+          id={name}
+          className='form-control custom-file-input'
           aria-describedby={`inputHelp-${name}`}
         />
-        <label className='custom-file-label' htmlFor='validatedCustomFile'>
-          {placeholder}
+        <label className='custom-file-label' htmlFor={name}>
+          {(value as any)?.name || placeholder}
         </label>
         {helperText && (
           <small id={`inputHelp-${name}`} className={helperTextClass}>

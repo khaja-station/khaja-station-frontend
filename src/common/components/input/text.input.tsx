@@ -21,7 +21,7 @@ const TextInput: React.FC<InputType> = ({
         name={name}
         onBlur={handleOnBlur}
         onChange={handleChange}
-        className='form-control'
+        className={'form-control'}
         placeholder={placeholder}
         aria-describedby={`inputHelp-${name}`}
       />
