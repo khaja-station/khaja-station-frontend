@@ -14,8 +14,8 @@ export const registerRestaurant = (payload: { name: string; email: string; passw
   return http.post(`/auth/users`, payload);
 };
 
-export const refreshAccessToken = () => {
-  return http.get(`/auth/refresh-token`);
+export const refreshAccessToken = (payload: { referenceToken: string }) => {
+  return http.post(`/auth/token`, payload);
 };
 
 export const addCategory = (payload: FormData) => {

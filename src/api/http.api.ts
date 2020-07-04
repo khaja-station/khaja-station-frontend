@@ -59,7 +59,9 @@ const handle401Error = (error: any) => {
 
   if (!isRefreshing) {
     isRefreshing = true;
-    refreshAccessToken().then((res: any) => {
+
+    const existingToken = storage.accessToken() || '';
+    refreshAccessToken({ referenceToken: existingToken }).then((res: any) => {
       if (res.data) {
         const { data } = res;
         isRefreshing = false;
