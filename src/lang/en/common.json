@@ -4,6 +4,10 @@
   "MENU": "Menu",
   "DASHBOARD": "Dashboard",
 
+  "USER": "User",
+  "PROFILE": "Profile",
+  "LOGOUT": "Log Out",
+
   "ADD_FOOD": "Add food",
   "FOOD_LIST": "Food List",
   "FOOD_GRID": "Food Grid",

@@ -3,8 +3,8 @@ import { StorageKey } from 'app/app.types';
 import React, { createContext } from 'react';
 import { Children, Dispatch } from 'common/common.types';
 
-import { AuthType } from './auth.types';
 import { auth } from './auth-context.types';
+import { AuthType, AuthState } from './auth.types';
 
 const initialState: AuthType = {
   user: undefined,
@@ -12,6 +12,7 @@ const initialState: AuthType = {
   roles: undefined,
   isSigningIn: false,
   isAuthenticated: false,
+  authState: AuthState.INITIAL,
 };
 
 const AuthStateContext = createContext<AuthType | undefined>(undefined);
@@ -20,7 +21,7 @@ const AuthDispatchContext = createContext<Dispatch | undefined>(undefined);
 function authReducer(state: AuthType = initialState, action: any) {
   switch (action.type) {
     case auth.SIGN_IN: {
-      return { ...state, isSigningIn: true };
+      return { ...state, state: AuthState.AUTHENTICATING };
     }
 
     case auth.SIGN_IN_SUCCESS: {
@@ -32,11 +33,25 @@ function authReducer(state: AuthType = initialState, action: any) {
         user: action.payload.user,
         token: action.payload.token,
         roles: action.payload.roles,
+        authState: AuthState.AUTHENTICATED,
       };
     }
 
     case auth.SIGN_IN_FAILURE: {
-      return { ...state, isSigningIn: false, isAuthenticated: false };
+      return { ...state, authState: AuthState.SIGN_IN_REJECTED, isAuthenticated: false };
+    }
+
+    case auth.SIGN_OUT: {
+      return { ...state, authState: AuthState.LOGGING_OUT };
+    }
+
+    case auth.SIGN_OUT_SUCCESS: {
+      storage.clear();
+      return { ...state, isAuthenticated: false, authState: AuthState.LOGGED_OUT };
+    }
+
+    case auth.SIGN_OUT_FAILURE: {
+      return { ...state, authState: AuthState.LOG_OUT_REJECTED };
     }
 
     default: {

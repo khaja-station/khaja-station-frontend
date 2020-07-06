@@ -3,6 +3,7 @@
         "KHAJA",
         "formik",
         "signin",
+        "signout",
         "unmount"
     ],
     "deepscan.enable": true

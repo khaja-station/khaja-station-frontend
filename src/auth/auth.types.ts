@@ -22,10 +22,21 @@ export enum RoleEnum {
   GUEST,
 }
 
+export enum AuthState {
+  INITIAL,
+  LOGGED_OUT,
+  LOGGING_OUT,
+  AUTHENTICATED,
+  AUTHENTICATING,
+  SIGN_IN_REJECTED,
+  LOG_OUT_REJECTED,
+}
+
 export interface AuthType {
   token?: string;
   user?: UserType;
   roles?: RoleEnum[];
+  authState: AuthState;
   isSigningIn: boolean;
   isAuthenticated: boolean;
 }

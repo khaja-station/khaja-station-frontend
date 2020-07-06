@@ -1,7 +1,7 @@
 import { ApiResponse } from 'api/api.types';
 import { addCategory, getCategories, getMenus } from 'api/request.api';
 
-import { category, menu } from './food-context.types';
+import { category } from './food-context.types';
 import { AddCategoryPayload, CategoryPayload } from './food.type';
 
 type KeyType = keyof CategoryPayload;
@@ -45,15 +45,7 @@ export const fetchCategories = async (dispatch: any): Promise<ApiResponse> => {
   return { data, error };
 };
 
-export const fetchMenus = async (dispatch: any): Promise<void> => {
-  dispatch({ type: menu.ADD_MENUS });
+export const fetchMenus = async (): Promise<ApiResponse> => {
   const { data, error } = await getMenus();
-  if (error) {
-    dispatch({ type: menu.ADD_MENUS_FAILURE });
-  } else {
-    dispatch({
-      type: menu.ADD_MENUS_SUCCESS,
-      payload: { menus: data },
-    });
-  }
+  return { data, error };
 };

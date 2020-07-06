@@ -11,6 +11,7 @@ export interface SidebarItemType {
 export enum MenuKey {
   FOOD,
   MENU,
+  USER,
   ORDER,
   CUSTOMER,
   DASHBOARD,

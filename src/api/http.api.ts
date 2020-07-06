@@ -6,6 +6,8 @@ import { STATUS_CODE } from 'app/app.status';
 import { refreshAccessToken } from 'api/request.api';
 import { withError, withData } from 'common/common-helper';
 
+import { urls } from './api.url';
+
 const axiosInstance = axios.create({
   baseURL: env.BASE_URL,
   headers: {
@@ -44,33 +46,41 @@ axiosInstance.interceptors.response.use(
 
     const status = error.response?.status;
 
-    const isSignedIn = storage.get(StorageKey.AUTH);
+    const isSignedIn = storage.get(StorageKey.AUTH).data;
+
+    const errorResponse = error.response?.data ? error.response.data : error;
 
     if (status === STATUS_CODE.UNAUTHORIZED && isSignedIn) {
+      const url = error.config?.url;
+      if (url === urls.auth.TOKEN) {
+        storage.clear();
+        window.location.replace('/login');
+        return withError(errorResponse);
+      }
+
       return handle401Error(error);
     }
 
-    return withError(error.response?.data ? error.response.data : error);
+    return withError(errorResponse);
   }
 );
 
-const handle401Error = (error: any) => {
+const handle401Error = async (error: any) => {
   const pendingRequest = error.config;
 
   if (!isRefreshing) {
     isRefreshing = true;
 
     const existingToken = storage.accessToken() || '';
-    refreshAccessToken({ referenceToken: existingToken }).then((res: any) => {
-      if (res.data) {
-        const { data } = res;
-        isRefreshing = false;
-        onRefreshed(data.token);
-        storage.changeAccessToken(data.token);
 
-        return (refreshSubscribers = []);
-      }
-    });
+    const res = await refreshAccessToken({ referenceToken: existingToken });
+    if (res.data) {
+      const { data } = res;
+      isRefreshing = false;
+      onRefreshed(data.token);
+      storage.changeAccessToken(data.token);
+      return (refreshSubscribers = []);
+    }
   }
 
   const retryPendingRequest = new Promise((resolve) => {

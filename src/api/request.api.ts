@@ -7,7 +7,11 @@ export const signWithGoogle = (token: string | null) => {
 };
 
 export const restaurantLogin = (payload: { email: string; password: string }) => {
-  return http.post(`/auth/signin`, payload);
+  return http.post(urls.auth.SIGN_IN, payload);
+};
+
+export const logout = () => {
+  return http.get(urls.auth.SIGN_OUT);
 };
 
 export const registerRestaurant = (payload: { name: string; email: string; password: string }) => {
@@ -15,7 +19,7 @@ export const registerRestaurant = (payload: { name: string; email: string; passw
 };
 
 export const refreshAccessToken = (payload: { referenceToken: string }) => {
-  return http.post(`/auth/token`, payload);
+  return http.post(urls.auth.TOKEN, payload);
 };
 
 export const addCategory = (payload: FormData) => {

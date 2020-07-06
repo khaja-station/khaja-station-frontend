@@ -1,5 +1,5 @@
 import React from 'react';
-import { Login, Register } from 'auth';
+import { Login, Register, LogOut } from 'auth';
 import FoodRoute from 'food/food.route';
 import Address from 'profile/views/address';
 import { DashboardView } from 'dashboard/views';
@@ -23,6 +23,7 @@ function AppRoute() {
         </Route>
 
         <PrivateRoute exact path={dashboardPath} component={DashboardView} />
+        <PrivateRoute exact path={'/auth/logout'} component={LogOut} />
         <Route exact path={'/404'} component={NotFound} />
       </Switch>
     </>

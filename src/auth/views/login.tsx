@@ -20,6 +20,7 @@ const Login: React.FC = () => {
   const { t } = useTranslation();
   const loginModal = useModal(true);
   const dispatch = useAuthDispatch();
+
   const { isAuthenticated } = useAuthState();
 
   const { from } = (location.state as any) || { from: { pathname: '/' } };

@@ -33,4 +33,14 @@ export const appRoutes = {
     title: 'PROMOTION',
     route: '/promotion',
   },
+  user: [
+    {
+      title: 'PROFILE',
+      route: '/auth/me',
+    },
+    {
+      title: 'LOGOUT',
+      route: '/auth/logout',
+    },
+  ],
 };
