@@ -1,15 +1,18 @@
 import React, { createContext } from 'react';
 import { Children, Dispatch } from 'common/common.types';
 
-import { CategoryPayload } from './food.type';
+import { Categories } from './food.type';
 import { category } from './food-context.types';
 
 interface FoodContextType {
-  categories: CategoryPayload[];
+  categories: Categories;
 }
 
 const initialState: FoodContextType = {
-  categories: [],
+  categories: {
+    paging: null,
+    result: [],
+  },
 };
 
 const FoodStateContext = createContext<FoodContextType | undefined>(undefined);
@@ -21,9 +24,24 @@ function foodReducer(state: FoodContextType = initialState, action: any) {
       return { ...state };
     }
     case category.ADD_CATEGORY_SUCCESS: {
-      return { ...state, categories: action.payload.categories };
+      return { ...state, category: action.payload.category };
     }
     case category.ADD_CATEGORY_FAILURE: {
+      return { ...state };
+    }
+
+    case category.ADD_CATEGORIES: {
+      return { ...state };
+    }
+    case category.ADD_CATEGORIES_SUCCESS: {
+      const paging = action.payload.categories?.paging;
+      const result = action.payload.categories?.result;
+      return {
+        ...state,
+        categories: { paging, result },
+      };
+    }
+    case category.ADD_CATEGORIES_FAILURE: {
       return { ...state };
     }
 

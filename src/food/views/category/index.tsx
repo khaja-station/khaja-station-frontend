@@ -1,7 +1,8 @@
 import React from 'react';
 import DashboardLayout from 'layouts/dashboard.layout';
+
 import AddFoodCategory from './add-category';
-import FoodCategoryList from './list-category';
+import FoodCategoryList from './category-list';
 
 const FoodCategory = () => {
   return (

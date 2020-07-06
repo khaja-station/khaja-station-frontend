@@ -6,11 +6,17 @@ export interface AddCategoryFormProps {
 }
 
 export interface CategoryPayload {
+  id?: number;
   name: string;
   description: string;
   promotionId?: number | string;
   featuredImage?: File;
   parentId?: number | string;
+}
+
+export interface Categories {
+  paging: number | null;
+  result: CategoryPayload[];
 }
 
 export interface AddCategoryPayload {

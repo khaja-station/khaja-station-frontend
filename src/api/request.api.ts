@@ -21,3 +21,7 @@ export const refreshAccessToken = (payload: { referenceToken: string }) => {
 export const addCategory = (payload: FormData) => {
   return http.post(urls.food.CATEGORY, payload);
 };
+
+export const getCategories = () => {
+  return http.get(urls.food.CATEGORY);
+};

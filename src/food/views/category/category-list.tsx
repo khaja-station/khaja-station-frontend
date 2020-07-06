@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
 import Table from 'common/components/table';
+import React, { useState, useEffect } from 'react';
+import { fetchCategories } from 'food/food.service';
 import { FaChevronRight, FaChevronDown } from 'react-icons/fa';
-import categories from '__mocks__/categories.mock.json';
+import { useFoodDispatch, useFoodState } from 'food/food.context';
 
 const headers = ['', '#', 'Title', 'Description', '', ''];
 
@@ -10,6 +11,7 @@ const EditButton: React.FC<{ onPress: () => void }> = ({ onPress }) => (
     Edit
   </button>
 );
+
 const DeleteButton: React.FC<{ onPress: () => void }> = ({ onPress }) => (
   <button className='btn-danger btn-block p-1' onClick={onPress}>
     Delete
@@ -26,18 +28,18 @@ const ExpandableRow = () => {
   return <div>hello expandable row</div>;
 };
 
-interface CategoryProps {
-  expanded: number;
-  select: (id: number) => void;
-}
+const Categories: React.FC = () => {
+  const { categories } = useFoodState();
+  const [expanded, setExpanded] = useState(0);
 
-const Categories: React.FC<CategoryProps> = ({ expanded, select }) => {
-  const categoryList = categories.result.map((cat, index) => {
-    const selected = expanded === cat.id;
+  const categoryList = categories?.result.map((cat, index) => {
+    const catID = cat.id as number;
+    const selected = expanded === catID;
+
     return (
       <React.Fragment key={index}>
         <tr>
-          <td onClick={() => select(cat.id)}>{selected ? <FaChevronDown /> : <FaChevronRight />}</td>
+          <td onClick={() => setExpanded(catID)}>{selected ? <FaChevronDown /> : <FaChevronRight />}</td>
           <td>{cat.id}</td>
           <td>{cat.name}</td>
           <td className='text-truncate' style={{ maxWidth: 250 }}>
@@ -61,11 +63,19 @@ const Categories: React.FC<CategoryProps> = ({ expanded, select }) => {
 };
 
 function FoodCategoryList() {
-  const [expanded, setExpanded] = useState(0);
+  const dispatch = useFoodDispatch();
+
+  useEffect(() => {
+    const getCategoriesList = async () => {
+      await fetchCategories(dispatch);
+    };
+    getCategoriesList();
+  }, [dispatch]);
+
   return (
     <div className='card p-3'>
       <h3>{'Food Categories'}</h3>
-      <Table headerEl={headerEl} bodyEl={<Categories expanded={expanded} select={(id) => setExpanded(id)} />} />
+      <Table headerEl={headerEl} bodyEl={<Categories />} />
     </div>
   );
 }
