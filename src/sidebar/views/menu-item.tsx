@@ -11,7 +11,7 @@ function MenuItem({ props }: DashboardMenuItemProps) {
   return (
     <div>
       <div className='d-flex justify-content-between' role='button' onClick={() => props.toggleExpansion(props.key)}>
-        <div className='d-flex align-items-end'>
+        <div className='d-flex align-items-end pt-4'>
           <span className='left-icon'>{props.icon}</span>
           <h4>{ct(props.name)}</h4>
         </div>

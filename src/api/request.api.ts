@@ -25,3 +25,7 @@ export const addCategory = (payload: FormData) => {
 export const getCategories = () => {
   return http.get(urls.food.CATEGORY);
 };
+
+export const getMenus = () => {
+  return http.get(urls.food.MENU);
+};

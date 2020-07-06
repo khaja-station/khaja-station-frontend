@@ -4,6 +4,7 @@ import { appRoutes } from 'app/app.route-paths';
 import { SidebarPropertyType, MenuKey } from 'sidebar/sidebar.types';
 
 import SidebarItem from './views/menu-sub-item';
+import MenuRoute from 'menu/menu-route';
 
 const { food, dashboard } = appRoutes;
 
@@ -19,5 +20,11 @@ export const menuItems = {
     key: MenuKey.FOOD,
     icon: <AiFillLayout />,
     child: food.map((item: SidebarPropertyType, index: number) => <SidebarItem item={item} key={index} />),
+  },
+  menu: {
+    name: 'MENU',
+    key: MenuKey.MENU,
+    icon: <AiFillLayout />,
+    child: <MenuRoute />,
   },
 };

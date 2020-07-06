@@ -4,5 +4,6 @@ export const urls = {
   },
   food: {
     CATEGORY: '/categories',
+    MENU: '/menus',
   },
 };

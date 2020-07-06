@@ -11,7 +11,7 @@ function MenuSubItem({ item }: SidebarItemType) {
 
   return (
     <div className='sidebar-item-wrapper transition'>
-      <Link className='link d-flex align-items-end' to={item.route}>
+      <Link className='link d-flex align-items-end pt-3' to={item.route}>
         {item.icon && <span className='left-icon'>{i(item.icon)}</span>}
         <span>{ct(item.title)}</span>
       </Link>
