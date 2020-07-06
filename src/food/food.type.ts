@@ -6,7 +6,7 @@ export interface AddCategoryFormProps {
 }
 
 export interface CategoryPayload {
-  id?: number;
+  id?: number | string;
   name: string;
   description: string;
   promotionId?: number | string;

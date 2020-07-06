@@ -1,28 +1,18 @@
 import React from 'react';
 import SubmitButton from 'common/components';
 import { useTranslation } from 'react-i18next';
+import { useFoodState } from 'food/food.context';
 import Input from 'common/components/input/text.input';
 import FileInput from 'common/components/input/file.input';
+import { OptionType } from 'common/components/component.type';
 import TextArea from 'common/components/input/text-area.input';
 import SelectInput from 'common/components/input/select.input';
 import { AddCategoryFormProps, CategoryPayload } from 'food/food.type';
 
-const parentOptions = [
+const placeHolderOption = [
   {
     name: 'Select',
     value: '',
-  },
-  {
-    name: 'one',
-    value: 1,
-  },
-  {
-    name: 'two',
-    value: 2,
-  },
-  {
-    name: 'Three',
-    value: 3,
   },
 ];
 
@@ -33,6 +23,10 @@ const AddCategoryForm: React.FC<AddCategoryFormProps> = ({ props }) => {
 
   const ct = (text: string) => t(`common.${text}`);
 
+  const {
+    categories: { result },
+  } = useFoodState();
+
   const error = (field: keyof CategoryPayload) =>
     props.touched[field] && props.values[field] && props.errors[field] ? props.errors[field] : undefined;
 
@@ -41,6 +35,14 @@ const AddCategoryForm: React.FC<AddCategoryFormProps> = ({ props }) => {
   };
 
   const isValid = () => props.isValid && Object.values(props.values).some(Boolean);
+
+  const makeCategoryOptions = (): OptionType[] => {
+    if (result.length <= 0) {
+      return placeHolderOption;
+    }
+    const mappedCategories = result.map((cat) => ({ name: cat.name, value: cat.id as number }));
+    return [...placeHolderOption, ...mappedCategories];
+  };
 
   return (
     <form onSubmit={props.handleSubmit}>
@@ -80,7 +82,7 @@ const AddCategoryForm: React.FC<AddCategoryFormProps> = ({ props }) => {
       />
       <SelectInput
         name='parentId'
-        options={parentOptions}
+        options={makeCategoryOptions()}
         title={ft('SELECT_PARENT')}
         error={!!error('parentId')}
         value={props.values.parentId}
@@ -90,7 +92,7 @@ const AddCategoryForm: React.FC<AddCategoryFormProps> = ({ props }) => {
       />
       <SelectInput
         name='promotionId'
-        options={parentOptions}
+        options={placeHolderOption}
         title={ft('SELECT_PROMOTION')}
         error={!!error('promotionId')}
         handleOnBlur={props.handleBlur}
