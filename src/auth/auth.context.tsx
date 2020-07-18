@@ -54,8 +54,19 @@ function authReducer(state: AuthType = initialState, action: any) {
       return { ...state, authState: AuthState.LOG_OUT_REJECTED };
     }
 
+    case auth.PROFILE_COMPLETE: {
+      return { ...state };
+    }
+    case auth.PROFILE_COMPLETE_SUCCESS: {
+      return { ...state, user: action.payload.user };
+    }
+    case auth.PROFILE_COMPLETE_FAILURE: {
+      return { ...state };
+    }
+
     default: {
-      throw new Error(`Unhandled action type: ${action.type}`);
+      return { ...state };
+      // throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
 }

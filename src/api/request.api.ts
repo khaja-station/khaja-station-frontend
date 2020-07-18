@@ -1,6 +1,7 @@
 import * as http from './http.api';
 
 import { urls } from './api.url';
+import { ProfilePayload } from 'auth/auth.types';
 
 export const signWithGoogle = (token: string | null) => {
   return http.get(`/auth/google/${token}`);
@@ -20,6 +21,10 @@ export const registerRestaurant = (payload: { name: string; email: string; passw
 
 export const refreshAccessToken = (payload: { referenceToken: string }) => {
   return http.post(urls.auth.TOKEN, payload);
+};
+
+export const completeSignup = (payload: Partial<ProfilePayload>) => {
+  return http.post(urls.auth.COMPLETE_SIGNUP, payload);
 };
 
 export const addCategory = (payload: FormData) => {

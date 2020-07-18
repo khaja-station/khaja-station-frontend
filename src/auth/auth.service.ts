@@ -1,7 +1,7 @@
 import { storage } from 'app/app.storage';
 import { auth } from './auth-context.types';
-import { restaurantLogin, logout } from 'api/request.api';
-import { LoginServicePayload } from './auth.types';
+import { restaurantLogin, logout, completeSignup } from 'api/request.api';
+import { LoginServicePayload, ProfileServicePayload } from './auth.types';
 
 export const login = async ({ dispatch, payload }: LoginServicePayload): Promise<void> => {
   dispatch({ type: auth.SIGN_IN });
@@ -26,6 +26,20 @@ export const signout = async (dispatch: any): Promise<void> => {
   } else {
     dispatch({
       type: auth.SIGN_OUT_SUCCESS,
+    });
+  }
+};
+
+export const completeProfile = async ({ dispatch, payload }: ProfileServicePayload): Promise<void> => {
+  dispatch({ type: auth.PROFILE_COMPLETE });
+  const { error, data } = await completeSignup(payload);
+
+  if (error) {
+    dispatch({ type: auth.PROFILE_COMPLETE_FAILURE });
+  } else {
+    dispatch({
+      type: auth.PROFILE_COMPLETE_SUCCESS,
+      payload: { user: data },
     });
   }
 };

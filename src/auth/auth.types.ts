@@ -53,3 +53,31 @@ export interface LoginServicePayload {
   dispatch: (args: StringKeyObject) => void;
   payload: LoginPayload;
 }
+
+export interface AddressPayload {
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+  state: string;
+  country: string;
+  longitude: string;
+  latitude: string;
+}
+
+export interface ProfilePayload {
+  name: string;
+  photo: string;
+  type: string;
+  homeDelivery: boolean;
+  phoneNumber: string;
+  address: AddressPayload;
+}
+
+export interface ProfileFormPayload {
+  props: FormikProps<ProfilePayload>;
+}
+
+export interface ProfileServicePayload {
+  dispatch: (args: StringKeyObject) => void;
+  payload: ProfilePayload;
+}

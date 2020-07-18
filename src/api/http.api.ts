@@ -25,6 +25,7 @@ axiosInstance.interceptors.request.use(
 );
 
 let isRefreshing: boolean = false;
+
 let refreshSubscribers: (() => void)[] = [];
 
 const subscribeTokenRefresh = (cb: any) => {
@@ -52,6 +53,7 @@ axiosInstance.interceptors.response.use(
 
     if (status === STATUS_CODE.UNAUTHORIZED && isSignedIn) {
       const url = error.config?.url;
+
       if (url === urls.auth.TOKEN) {
         storage.clear();
         window.location.replace('/login');
