@@ -3,23 +3,41 @@ import MenuSubItem from 'sidebar/views/menu-sub-item';
 import { SidebarPropertyType } from 'sidebar/sidebar.types';
 
 import useFetchAllMenus from './useFetchAllMenus';
+import { appRouteConstants } from 'app/app-route.constant';
 
 const MenuRoute = () => {
-  const { loading, menus } = useFetchAllMenus();
+  const addMenu = {
+    title: 'ADD_MENU',
+    route: appRouteConstants.food.menu.add,
+  };
 
-  if (loading) {
-    return <span>...</span>;
+  return (
+    <>
+      <MenuSubItem item={addMenu} />
+      <FetchedMenuRoute />
+    </>
+  );
+};
+
+const FetchedMenuRoute = () => {
+  const { loading, menus, error } = useFetchAllMenus();
+
+  if (loading && !error) {
+    return <span>.....</span>;
   }
+
   if (menus?.length > 0) {
     const menuRouteList = menus.map((menu: any, index: number) => ({
-      title: `Menu Type ${index}`,
-      route: `/food/menu`,
+      title: menu?.name || 'Default Name',
+      route: appRouteConstants.food.menu.view.replace(':slug', menu?.slug || ''),
     }));
+
     if (menuRouteList) {
       return menuRouteList.map((item: SidebarPropertyType, index: number) => <MenuSubItem item={item} key={index} />);
     }
   }
-  return <div />;
+
+  return null;
 };
 
 export default MenuRoute;

@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { SidebarItemType } from 'sidebar/sidebar.types';
 
 const i = (Icon: any) => (Icon ? <Icon /> : null);
-function MenuSubItem({ item }: SidebarItemType) {
+
+const MenuSubItem: React.FC<SidebarItemType> = ({ item }) => {
   const { t } = useTranslation();
 
   const ct = (text: string) => t(`common.${text}`);
@@ -17,6 +18,6 @@ function MenuSubItem({ item }: SidebarItemType) {
       </Link>
     </div>
   );
-}
+};
 
 export default MenuSubItem;
