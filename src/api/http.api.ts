@@ -75,14 +75,15 @@ const handle401Error = async (error: any) => {
 
     const existingToken = storage.accessToken() || '';
 
-    const res = await refreshAccessToken({ referenceToken: existingToken });
-    if (res.data) {
-      const { data } = res;
-      isRefreshing = false;
-      onRefreshed(data.token);
-      storage.changeAccessToken(data.token);
-      return (refreshSubscribers = []);
-    }
+    refreshAccessToken({ referenceToken: existingToken }).then((res: any) => {
+      if (res.data) {
+        const { data } = res;
+        isRefreshing = false;
+        onRefreshed(data.token);
+        storage.changeAccessToken(data.token);
+        return (refreshSubscribers = []);
+      }
+    });
   }
 
   const retryPendingRequest = new Promise((resolve) => {

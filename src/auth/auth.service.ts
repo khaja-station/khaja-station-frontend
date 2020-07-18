@@ -1,6 +1,8 @@
 import { storage } from 'app/app.storage';
+import { ApiResponse } from 'api/api.types';
+import { restaurantLogin, logout, completeSignup, getProfile } from 'api/request.api';
+
 import { auth } from './auth-context.types';
-import { restaurantLogin, logout, completeSignup } from 'api/request.api';
 import { LoginServicePayload, ProfileServicePayload } from './auth.types';
 
 export const login = async ({ dispatch, payload }: LoginServicePayload): Promise<void> => {
@@ -30,7 +32,7 @@ export const signout = async (dispatch: any): Promise<void> => {
   }
 };
 
-export const completeProfile = async ({ dispatch, payload }: ProfileServicePayload): Promise<void> => {
+export const completeProfile = async ({ dispatch, payload }: ProfileServicePayload): Promise<ApiResponse> => {
   dispatch({ type: auth.PROFILE_COMPLETE });
   const { error, data } = await completeSignup(payload);
 
@@ -42,4 +44,10 @@ export const completeProfile = async ({ dispatch, payload }: ProfileServicePaylo
       payload: { user: data },
     });
   }
+  return { error, data };
+};
+
+export const fetchProfile = async (): Promise<ApiResponse> => {
+  const { error, data } = await getProfile();
+  return { error, data };
 };

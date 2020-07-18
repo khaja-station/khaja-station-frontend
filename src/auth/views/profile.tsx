@@ -5,6 +5,7 @@ import { ProfilePayload } from 'auth/auth.types';
 import DashboardLayout from 'layouts/dashboard.layout';
 import { completeProfile } from 'auth/auth.service';
 import { useAuthDispatch } from 'auth/auth.context';
+import { toast } from 'react-toastify';
 
 const initialValue: ProfilePayload = {
   name: '',
@@ -35,7 +36,15 @@ const Profile = () => {
                 <Formik
                   initialValues={initialValue}
                   onSubmit={async (values, actions) => {
-                    await completeProfile({ dispatch, payload: values });
+                    const { error } = await completeProfile({ dispatch, payload: values });
+                    if (!error) {
+                      actions.resetForm();
+                      toast('Profile Updated Successfully', { type: 'success' });
+                    } else {
+                      toast(error.message ? JSON.stringify(error.message) : 'Something went wrong!!', {
+                        type: 'error',
+                      });
+                    }
                   }}
                 >
                   {(props) => <ProfileForm props={props} />}

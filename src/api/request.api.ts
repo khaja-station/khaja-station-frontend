@@ -27,6 +27,10 @@ export const completeSignup = (payload: Partial<ProfilePayload>) => {
   return http.post(urls.auth.COMPLETE_SIGNUP, payload);
 };
 
+export const getProfile = () => {
+  return http.get(urls.auth.PROFILE);
+};
+
 export const addCategory = (payload: FormData) => {
   return http.post(urls.food.CATEGORY, payload);
 };

@@ -1,5 +1,6 @@
 export const urls = {
   auth: {
+    PROFILE: '/auth/me',
     TOKEN: '/auth/token',
     SIGN_IN: '/auth/signin',
     SIGN_OUT: '/auth/signout',
