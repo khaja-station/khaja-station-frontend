@@ -12,5 +12,12 @@
   "FOOD_LIST": "Food List",
   "FOOD_GRID": "Food Grid",
   "FOOD_ITEM": "Food item",
-  "FOOD_CATEGORY": "Food Category"
+  "FOOD_CATEGORY": "Food Category",
+
+  "PHOTO": "Upload Photo",
+  "PHONE_NUMBER": "Phone Number",
+
+  "HOME_DELIVERY": "Home Delivery",
+  "RESTAURANT_TYPE": "Restaurant Type",
+  "RESTAURANT_NAME": "Restaurant Name"
 }

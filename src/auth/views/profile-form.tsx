@@ -20,8 +20,6 @@ const deliveryOptions: OptionType[] = [
 const ProfileForm: React.FC<ProfileFormPayload> = ({ props }) => {
   const { t } = useTranslation();
 
-  const at = (text: string) => t(`auth.${text}`);
-
   const ct = (text: string) => t(`common.${text}`);
 
   const helpText = (field: keyof ProfilePayload) => {
@@ -38,9 +36,9 @@ const ProfileForm: React.FC<ProfileFormPayload> = ({ props }) => {
         type='text'
         name='name'
         error={!!error('name')}
-        title={at('RESTAURANT_NAME')}
+        title={ct('RESTAURANT_NAME')}
         handleOnBlur={props.handleBlur}
-        placeholder={at('RESTAURANT_NAME')}
+        placeholder={ct('RESTAURANT_NAME')}
         handleChange={props.handleChange}
         helperText={helpText('name') as string}
       />
@@ -48,9 +46,9 @@ const ProfileForm: React.FC<ProfileFormPayload> = ({ props }) => {
         type='text'
         name='photo'
         error={!!error('photo')}
-        title={at('PHOTO')}
+        title={ct('PHOTO')}
         handleOnBlur={props.handleBlur}
-        placeholder={at('PHOTO')}
+        placeholder={ct('PHOTO')}
         handleChange={props.handleChange}
         helperText={helpText('photo') as string}
       />
@@ -59,9 +57,9 @@ const ProfileForm: React.FC<ProfileFormPayload> = ({ props }) => {
         type='text'
         name='type'
         error={!!error('type')}
-        title={at('RESTAURANT_TYPE')}
+        title={ct('RESTAURANT_TYPE')}
         handleOnBlur={props.handleBlur}
-        placeholder={at('RESTAURANT_TYPE')}
+        placeholder={ct('RESTAURANT_TYPE')}
         handleChange={props.handleChange}
         helperText={helpText('type') as string}
       />
@@ -69,7 +67,7 @@ const ProfileForm: React.FC<ProfileFormPayload> = ({ props }) => {
       <SelectInput
         name='homeDelivery'
         options={deliveryOptions}
-        title={at('RESTAURANT_TYPE')}
+        title={ct('HOME_DELIVERY')}
         error={!!error('homeDelivery')}
         handleOnBlur={props.handleBlur}
         handleChange={props.handleChange}
@@ -80,9 +78,9 @@ const ProfileForm: React.FC<ProfileFormPayload> = ({ props }) => {
         type='text'
         name='phoneNumber'
         error={!!error('phoneNumber')}
-        title={at('PHONE_NUMBER')}
+        title={ct('PHONE_NUMBER')}
         handleOnBlur={props.handleBlur}
-        placeholder={at('PHONE_NUMBER')}
+        placeholder={ct('PHONE_NUMBER')}
         handleChange={props.handleChange}
         helperText={helpText('phoneNumber') as string}
       />
