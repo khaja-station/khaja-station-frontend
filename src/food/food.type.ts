@@ -44,3 +44,22 @@ export interface AddMenuPayload {
 }
 
 export type Dispatch = (args: StringKeyObject) => void;
+
+export interface FoodItemPayload {
+  name: string;
+  price: number;
+  menuId: string;
+  nickName: string;
+  discount: number;
+  description: string;
+  promotionId?: string;
+  categories: string[];
+  featuredImage?: File | string;
+}
+export interface AddFoodItemFormProps {
+  props: FormikProps<FoodItemPayload>;
+}
+
+export interface FoodPreviewProps {
+  food: FoodItemPayload;
+}

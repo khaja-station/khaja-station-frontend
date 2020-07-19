@@ -9,3 +9,7 @@ export const menu = {
   ...makeTypes('ADD_MENU'),
   ...makeTypes('ADD_MENUS'),
 };
+
+export const food = {
+  ...makeTypes('ADD_FOOD_ITEM_PROPERTY'),
+};

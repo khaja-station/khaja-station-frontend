@@ -1,46 +1,38 @@
-import { DashboardView } from 'dashboard/views';
+import { appRouteConstants } from 'app/app-route.constant';
 
 export const sidebarData = {
   dashboard: {
     title: 'DASHBOARD',
     route: '/dashboard',
-    component: DashboardView,
   },
   food: [
     {
       title: 'FOOD_CATEGORY',
       route: '/cat',
-      component: 'FoodCategory',
     },
     {
       title: 'FOOD_LIST',
-      route: '/food-list',
-      component: 'FoodList',
+      route: '/food/item/list',
     },
     {
       title: 'FOOD_GRID',
-      route: '/food-grid',
-      component: 'FoodGrid',
+      route: '/food/item/grid',
     },
     {
       title: 'FOOD_ITEM',
-      route: '/food-category',
-      component: 'FoodItem',
+      route: '/food/item',
     },
     {
       title: 'ADD_FOOD',
-      route: '/add-food',
-      component: 'AddFood',
+      route: appRouteConstants.food.item.add,
     },
   ],
   order: {
     title: 'ORDER',
     route: '/order',
-    component: 'Order',
   },
   promotion: {
     title: 'PROMOTION',
     route: '/promotion',
-    component: 'Promotion',
   },
 };

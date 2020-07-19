@@ -1,3 +1,5 @@
+import { appRouteConstants } from './app-route.constant';
+
 export const appRoutes = {
   dashboard: {
     title: 'DASHBOARD',
@@ -10,19 +12,19 @@ export const appRoutes = {
     },
     {
       title: 'FOOD_LIST',
-      route: '/food/list',
+      route: appRouteConstants.food.item.list,
     },
     {
       title: 'FOOD_GRID',
-      route: '/food/grid',
+      route: appRouteConstants.food.item.grid,
     },
     {
       title: 'FOOD_ITEM',
-      route: '/food/item',
+      route: appRouteConstants.food.item.def,
     },
     {
       title: 'ADD_FOOD',
-      route: '/food/add',
+      route: appRouteConstants.food.item.add,
     },
   ],
   order: {

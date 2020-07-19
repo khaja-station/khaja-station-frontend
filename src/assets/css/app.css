@@ -9984,16 +9984,16 @@ template {
 
 .theme--light .app-wrapper {
   width: 100%;
-  height: 100vh;
-  background: #eee;
   color: #000;
+  background: #eee;
+  min-height: 100vh;
 }
 
 .theme--dark .app-wrapper {
   width: 100%;
-  height: 100vh;
-  background: #12181b;
   color: #fff;
+  background: #12181b;
+  min-height: 100vh;
 }
 
 .theme--dark .separator {
@@ -10081,6 +10081,13 @@ a:hover {
 
 .theme--light .card-header {
   border-bottom: 1px solid #999999;
+}
+
+.img-wrapper-small {
+  min-width: 150px;
+  max-width: 200px;
+  min-height: 150px;
+  max-height: 200px;
 }
 
 .top-navbar {

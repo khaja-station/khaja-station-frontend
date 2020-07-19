@@ -15,3 +15,10 @@
     border-bottom: 1px solid lighten($text--light, 60%);
   }
 }
+
+.img-wrapper-small {
+  min-width: 150px;
+  max-width: 200px;
+  min-height: 150px;
+  max-height: 200px;
+}
