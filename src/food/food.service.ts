@@ -3,6 +3,7 @@ import { addCategory, getCategories, getMenus, postMenu } from 'api/request.api'
 
 import { category, menu } from './food-context.types';
 import { AddCategoryPayload, CategoryPayload, AddMenuPayload, MenuPayload } from './food.type';
+import { Dispatch } from 'common/common.types';
 
 type MenuKey = keyof MenuPayload;
 type CategoryKeys = keyof CategoryPayload;
@@ -48,8 +49,17 @@ export const fetchCategories = async (dispatch: any): Promise<ApiResponse> => {
   return { data, error };
 };
 
-export const fetchMenus = async (): Promise<ApiResponse> => {
+export const fetchMenus = async (dispatch: Dispatch): Promise<ApiResponse> => {
+  dispatch({ type: menu.ADD_MENUS });
   const { data, error } = await getMenus();
+  if (error) {
+    dispatch({ type: menu.ADD_MENUS_FAILURE });
+  } else {
+    dispatch({
+      type: menu.ADD_MENUS_SUCCESS,
+      payload: { menus: data },
+    });
+  }
   return { data, error };
 };
 

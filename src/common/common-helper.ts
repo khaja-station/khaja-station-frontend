@@ -77,3 +77,12 @@ export const makeTypes = (type: string) => {
     [`${type}_FAILURE`]: `${type}_FAILURE`,
   };
 };
+
+/**
+ * @description al is shortcut for Adjust Language
+ * This will convert CAPITAL_LETTER to be used
+ * in language file
+ */
+export const al = (word: string): string => {
+  return word.split(' ').join('_').toUpperCase();
+};

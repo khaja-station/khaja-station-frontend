@@ -18,6 +18,10 @@ export interface Categories {
   paging: number | null;
   result: CategoryPayload[];
 }
+export interface Menus {
+  paging: number | null;
+  result: MenuPayload[];
+}
 
 export interface AddCategoryPayload {
   dispatch: (args: StringKeyObject) => void;

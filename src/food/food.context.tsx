@@ -1,12 +1,12 @@
 import React, { createContext } from 'react';
 import { Children, Dispatch } from 'common/common.types';
 
-import { Categories, MenuPayload } from './food.type';
+import { Categories, MenuPayload, Menus } from './food.type';
 import { category, menu } from './food-context.types';
 
 interface FoodContextType {
   categories: Categories;
-  menus: any;
+  menus: Menus;
   menu: MenuPayload | null;
 }
 
@@ -15,7 +15,10 @@ const initialState: FoodContextType = {
     paging: null,
     result: [],
   },
-  menus: null,
+  menus: {
+    paging: null,
+    result: [],
+  },
   menu: null,
 };
 
@@ -53,10 +56,14 @@ function foodReducer(state: FoodContextType = initialState, action: any) {
       return { ...state };
     }
     case menu.ADD_MENUS_SUCCESS: {
-      const menus = action.payload.menus;
+      const paging = action.payload.menus?.paging;
+      const result = action.payload.menus?.result;
       return {
         ...state,
-        menus,
+        menus: {
+          paging,
+          result,
+        },
       };
     }
     case menu.ADD_MENUS_FAILURE: {

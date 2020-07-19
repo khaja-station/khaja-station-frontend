@@ -18,7 +18,7 @@ const DeleteButton: React.FC<{ onPress: () => void }> = ({ onPress }) => (
 
 const MenuListItems: React.FC = () => {
   const { menus } = useFoodState();
-  const menuList = menus?.map((menu: MenuPayload, index: number) => {
+  const menuList = menus.result.map((menu: MenuPayload, index: number) => {
     return (
       <tr key={index}>
         <td>{index + 1}</td>

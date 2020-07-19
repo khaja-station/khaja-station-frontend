@@ -1,4 +1,5 @@
 export interface SidebarPropertyType {
+  isT?: boolean;
   title: string;
   route: string;
   icon?: React.ReactNode;

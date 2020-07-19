@@ -9,12 +9,13 @@ const MenuSubItem: React.FC<SidebarItemType> = ({ item }) => {
   const { t } = useTranslation();
 
   const ct = (text: string) => t(`common.${text}`);
+  const requiredTranslation = item.isT !== undefined ? (item.isT !== false ? true : false) : true;
 
   return (
     <div className='sidebar-item-wrapper transition'>
       <Link className='link d-flex align-items-end pt-3' to={item.route}>
         {item.icon && <span className='left-icon'>{i(item.icon)}</span>}
-        <span>{ct(item.title)}</span>
+        {requiredTranslation ? <span>{ct(item.title)}</span> : <span>{item.title}</span>}
       </Link>
     </div>
   );
