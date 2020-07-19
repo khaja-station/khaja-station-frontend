@@ -18,7 +18,7 @@ function FoodRoute() {
         <PrivateRoute exact path='/food/menu/new' component={AddMenu} />
         <PrivateRoute exact path={'/food/404'} component={NotFound} />
         <PrivateRoute exact path={appRouteConstants.food.menu.view} component={Menu} />
-        <PrivateRoute exact path={appRouteConstants.food.menu.add} component={AddMenu} />
+        <PrivateRoute exact path={appRouteConstants.food.menu.add} component={Menu} />
         <Redirect to={'/food/404'} />
       </Switch>
     </FoodProvider>

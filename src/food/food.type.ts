@@ -23,3 +23,20 @@ export interface AddCategoryPayload {
   dispatch: (args: StringKeyObject) => void;
   payload: CategoryPayload;
 }
+
+export interface MenuPayload {
+  name: string;
+  description: string;
+  featuredImage?: File;
+}
+
+export interface AddMenuFormProps {
+  props: FormikProps<MenuPayload>;
+}
+
+export interface AddMenuPayload {
+  dispatch: (args: StringKeyObject) => void;
+  payload: MenuPayload;
+}
+
+export type Dispatch = (args: StringKeyObject) => void;

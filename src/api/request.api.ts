@@ -42,3 +42,7 @@ export const getCategories = () => {
 export const getMenus = () => {
   return http.get(urls.food.MENU);
 };
+
+export const postMenu = (payload: FormData) => {
+  return http.post(urls.food.MENU, payload);
+};
